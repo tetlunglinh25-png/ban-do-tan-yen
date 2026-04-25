@@ -4,159 +4,430 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Danh lam thắng cảnh - Xã Tân Yên</title>
-  <meta name="description" content="Tra cứu nhanh danh lam thắng cảnh, xem vị trí trên bản đồ và nhận chỉ đường tại xã Tân Yên, tỉnh Bắc Ninh." />
+  <title>Công trình thanh niên - Bản đồ số xã Tân Yên</title>
+  <meta name="description" content="Công trình thanh niên Bản đồ số xã Tân Yên, tỉnh Bắc Ninh. Tra cứu nhanh các địa danh, danh lam thắng cảnh, vị trí trên bản đồ và chỉ đường." />
 
-  <meta property="og:title" content="Bản đồ danh lam thắng cảnh - Xã Tân Yên" />
-  <meta property="og:description" content="Công trình do Đoàn Thanh niên - Hội Liên hiệp Thanh niên xã Tân Yên xây dựng." />
+  <meta property="og:title" content="Công trình thanh niên - Bản đồ số xã Tân Yên" />
+  <meta property="og:description" content="Công trình thanh niên chào mừng thành công bầu cử đại biểu Quốc hội khóa XVI và bầu cử HĐND các cấp nhiệm kỳ 2026-2031." />
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap&subset=vietnamese" rel="stylesheet">
 
   <style>
     * {
       box-sizing: border-box;
     }
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f7f7f7;
-      color: #222;
+    html {
+      scroll-behavior: smooth;
     }
 
-    .header {
-      background: linear-gradient(135deg, #b40000, #e00000);
+    body,
+    button,
+    input,
+    textarea,
+    select,
+    .leaflet-container,
+    .leaflet-popup-content {
+      font-family: "Be Vietnam Pro", Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top left, rgba(0, 174, 255, 0.16), transparent 32%),
+        radial-gradient(circle at top right, rgba(0, 91, 187, 0.16), transparent 28%),
+        linear-gradient(180deg, #eaf7ff 0%, #f7fbff 45%, #ffffff 100%);
+      color: #123047;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
       color: white;
-      padding: 26px 16px;
+      padding: 28px 16px 26px;
+      background:
+        linear-gradient(135deg, rgba(0, 84, 164, 0.96), rgba(0, 167, 255, 0.92)),
+        url("images/bg-cong-nghe-so.jpg");
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 8px 26px rgba(0, 82, 150, 0.25);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px);
+      background-size: 34px 34px;
+      opacity: 0.28;
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      right: -160px;
+      top: -180px;
+      background: rgba(255,255,255,0.14);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      max-width: 1180px;
+      margin: 0 auto;
+      z-index: 1;
+    }
+
+    .top-line {
+      text-align: center;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      font-size: 14px;
+      text-transform: uppercase;
+      color: #d9f3ff;
+      margin-bottom: 16px;
+    }
+
+    .header-main {
+      display: grid;
+      grid-template-columns: 110px 1fr 110px;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .logo-card {
+      width: 108px;
+      height: 108px;
+      border-radius: 26px;
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.35);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.16);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+      backdrop-filter: blur(8px);
+    }
+
+    .logo-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .title-area {
       text-align: center;
     }
 
-    .header h1 {
-      margin: 0;
-      font-size: 30px;
-      line-height: 1.3;
-      text-transform: uppercase;
+    .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.32);
+      color: #ffffff;
+      padding: 7px 14px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      backdrop-filter: blur(8px);
     }
 
-    .header p {
-      margin: 10px 0 0;
-      font-size: 17px;
+    .title-area h1 {
+      margin: 0;
+      font-size: 40px;
+      line-height: 1.24;
+      font-weight: 900;
+      text-transform: uppercase;
+      text-shadow: 0 3px 12px rgba(0,0,0,0.2);
+    }
+
+    .title-area .sub-title {
+      margin-top: 10px;
+      font-size: 19px;
+      font-weight: 700;
+      color: #eefaff;
+    }
+
+    .election-banner {
+      margin: 22px auto 0;
+      max-width: 1040px;
+      background: linear-gradient(90deg, rgba(255,255,255,0.18), rgba(255,255,255,0.28));
+      border: 1px solid rgba(255,255,255,0.34);
+      border-radius: 18px;
+      padding: 14px 18px;
+      text-align: center;
+      font-weight: 800;
+      line-height: 1.55;
+      text-transform: uppercase;
+      color: #ffffff;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.12);
+      backdrop-filter: blur(8px);
     }
 
     .container {
       max-width: 1180px;
       margin: auto;
-      padding: 16px;
+      padding: 22px 16px 30px;
+    }
+
+    .intro-card {
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .intro-main,
+    .intro-side {
+      background: rgba(255,255,255,0.88);
+      border: 1px solid #d6efff;
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: 0 8px 24px rgba(0, 96, 180, 0.08);
+    }
+
+    .intro-main h2 {
+      margin: 0 0 8px;
+      color: #006bc7;
+      font-size: 23px;
+      line-height: 1.35;
+    }
+
+    .intro-main p {
+      margin: 0;
+      line-height: 1.65;
+      color: #29485e;
+    }
+
+    .intro-side {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: linear-gradient(135deg, #ffffff, #e7f7ff);
+    }
+
+    .intro-icon {
+      width: 54px;
+      height: 54px;
+      min-width: 54px;
+      border-radius: 16px;
+      background: #008ff5;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      box-shadow: 0 8px 18px rgba(0,143,245,0.26);
+    }
+
+    .intro-side strong {
+      display: block;
+      color: #006bc7;
+      font-size: 18px;
+      margin-bottom: 4px;
+    }
+
+    .intro-side span {
+      line-height: 1.45;
+      color: #315369;
+      font-size: 14px;
     }
 
     .guide {
-      background: #fff8dc;
-      border-left: 5px solid #d40000;
-      padding: 14px 16px;
+      background: #ffffff;
+      border-left: 6px solid #0094ff;
+      padding: 15px 18px;
       margin-bottom: 16px;
-      border-radius: 8px;
-      line-height: 1.5;
+      border-radius: 14px;
+      line-height: 1.6;
+      box-shadow: 0 6px 20px rgba(0, 96, 180, 0.07);
+      color: #27465c;
     }
 
-    .stats {
+    .guide strong {
+      color: #006bc7;
+    }
+
+    .search-row {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: 1fr auto;
       gap: 12px;
       margin-bottom: 16px;
     }
 
-    .stat-card {
-      background: white;
-      padding: 16px;
-      border-radius: 12px;
-      text-align: center;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    }
-
-    .stat-card strong {
-      display: block;
-      color: #c00000;
-      font-size: 28px;
-      margin-bottom: 4px;
-    }
-
-    .search-box {
-      margin-bottom: 14px;
-    }
-
     .search-box input {
       width: 100%;
-      padding: 13px 15px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
+      padding: 15px 16px;
+      border-radius: 14px;
+      border: 1px solid #b8e0ff;
       font-size: 16px;
+      background: white;
+      outline: none;
+      box-shadow: 0 5px 18px rgba(0, 96, 180, 0.06);
+    }
+
+    .search-box input:focus {
+      border-color: #0094ff;
+      box-shadow: 0 0 0 4px rgba(0, 148, 255, 0.12);
+    }
+
+    .map-note {
+      padding: 0 16px;
+      border-radius: 14px;
+      background: #007ee5;
+      color: white;
+      border: none;
+      font-size: 15px;
+      font-weight: 700;
+      box-shadow: 0 8px 20px rgba(0,126,229,0.18);
+      cursor: pointer;
     }
 
     #map {
       width: 100%;
-      height: 560px;
-      border-radius: 12px;
+      height: 640px;
+      border-radius: 22px;
       overflow: hidden;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.12);
-      margin-bottom: 18px;
+      box-shadow: 0 12px 34px rgba(0, 72, 130, 0.18);
+      margin-bottom: 22px;
+      border: 5px solid #ffffff;
+      outline: 1px solid #cbeaff;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 8px 0 14px;
+    }
+
+    .section-title h2 {
+      margin: 0;
+      color: #006bc7;
+      font-size: 24px;
+      line-height: 1.35;
+    }
+
+    .section-title span {
+      color: #5a7487;
+      font-size: 14px;
     }
 
     .list {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
+      gap: 16px;
     }
 
     .card {
+      position: relative;
+      overflow: hidden;
       background: white;
-      border-radius: 12px;
-      padding: 16px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      border-radius: 20px;
+      padding: 14px;
+      box-shadow: 0 10px 26px rgba(0, 82, 150, 0.10);
       cursor: pointer;
-      transition: 0.2s;
+      transition: 0.22s ease;
+      border: 1px solid #d9efff;
     }
 
     .card:hover {
-      transform: translateY(-2px);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 36px rgba(0, 82, 150, 0.16);
+    }
+
+    .card-image-wrap {
+      position: relative;
+      overflow: hidden;
+      border-radius: 16px;
+      height: 210px;
+      margin-bottom: 13px;
+      background: #e8f5ff;
     }
 
     .card-image {
       width: 100%;
-      height: 180px;
+      height: 100%;
       object-fit: cover;
-      border-radius: 10px;
-      margin-bottom: 10px;
-      background: #eee;
+      display: block;
+      transition: 0.3s ease;
+    }
+
+    .card:hover .card-image {
+      transform: scale(1.04);
+    }
+
+    .type-badge {
+      position: absolute;
+      left: 12px;
+      top: 12px;
+      background: rgba(0, 126, 229, 0.94);
+      color: white;
+      padding: 7px 11px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      box-shadow: 0 5px 14px rgba(0,0,0,0.16);
     }
 
     .card h3 {
-      margin: 0 0 8px;
-      color: #b40000;
+      margin: 0 0 9px;
+      color: #005fb3;
+      font-size: 21px;
+      line-height: 1.35;
     }
 
     .card p {
-      margin: 5px 0;
-      line-height: 1.4;
+      margin: 6px 0;
+      line-height: 1.5;
+      color: #314f63;
+    }
+
+    .card p strong {
+      color: #173b55;
     }
 
     .btn {
       display: inline-block;
-      margin-top: 10px;
-      padding: 9px 13px;
-      background: #c40000;
+      margin-top: 12px;
+      padding: 11px 15px;
+      background: linear-gradient(135deg, #007ee5, #00a6ff);
       color: white;
       text-decoration: none;
-      border-radius: 6px;
-      font-weight: bold;
+      border-radius: 11px;
+      font-weight: 800;
+      box-shadow: 0 8px 18px rgba(0,126,229,0.22);
+      transition: 0.18s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      filter: brightness(0.96);
     }
 
     .footer {
-      margin-top: 25px;
+      margin-top: 26px;
       text-align: center;
-      color: #666;
+      color: #456;
       font-size: 14px;
-      padding-bottom: 20px;
-      line-height: 1.5;
+      padding: 20px 14px;
+      line-height: 1.6;
+      border-top: 1px solid #d6efff;
+    }
+
+    .footer strong {
+      color: #006bc7;
     }
 
     .custom-marker {
@@ -164,105 +435,276 @@
       border: none;
     }
 
+    .marker-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transform: translateY(-8px);
+    }
+
     .marker-icon {
-      width: 44px;
-      height: 44px;
-      background: #c40000;
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, #007ee5, #00a6ff);
       color: white;
-      border: 3px solid #ffd700;
+      border: 4px solid #ffffff;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 23px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.35);
+      box-shadow: 0 7px 16px rgba(0, 74, 137, 0.35);
+    }
+
+    .marker-label {
+      margin-top: 7px;
+      background: rgba(255,255,255,0.97);
+      color: #005fb3;
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.25;
+      padding: 5px 9px;
+      border-radius: 10px;
+      white-space: nowrap;
+      box-shadow: 0 4px 10px rgba(0, 74, 137, 0.18);
+      border: 1px solid #cce8ff;
+      text-align: center;
+      max-width: 170px;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .popup-box {
-      max-width: 250px;
-      line-height: 1.45;
+      max-width: 260px;
+      line-height: 1.5;
+      color: #173b55;
     }
 
     .popup-image {
-      width: 230px;
-      height: 135px;
+      width: 240px;
+      height: 145px;
       object-fit: cover;
-      border-radius: 8px;
-      margin-bottom: 8px;
+      border-radius: 12px;
+      margin-bottom: 9px;
       display: block;
-      background: #eee;
+      background: #e8f5ff;
     }
 
     .popup-title {
-      color: #b40000;
-      font-size: 16px;
-      margin-bottom: 6px;
+      color: #006bc7;
+      font-size: 17px;
+      margin-bottom: 7px;
       display: block;
+      line-height: 1.35;
+    }
+
+    .leaflet-popup-content-wrapper {
+      border-radius: 16px;
+      box-shadow: 0 10px 28px rgba(0,0,0,0.22);
+    }
+
+    .leaflet-popup-content {
+      margin: 13px;
+    }
+
+    @media (max-width: 900px) {
+      .header-main {
+        grid-template-columns: 82px 1fr 82px;
+        gap: 10px;
+      }
+
+      .logo-card {
+        width: 80px;
+        height: 80px;
+        border-radius: 20px;
+      }
+
+      .title-area h1 {
+        font-size: 29px;
+      }
+
+      .intro-card {
+        grid-template-columns: 1fr;
+      }
     }
 
     @media (max-width: 768px) {
-      .header h1 {
-        font-size: 22px;
+      .hero {
+        padding: 20px 12px 22px;
       }
 
-      .header p {
+      .top-line {
+        font-size: 12px;
+        margin-bottom: 12px;
+      }
+
+      .header-main {
+        grid-template-columns: 64px 1fr 64px;
+        gap: 8px;
+      }
+
+      .logo-card {
+        width: 62px;
+        height: 62px;
+        border-radius: 16px;
+        padding: 7px;
+      }
+
+      .badge {
+        font-size: 12px;
+        padding: 6px 10px;
+        margin-bottom: 9px;
+      }
+
+      .title-area h1 {
+        font-size: 21px;
+      }
+
+      .title-area .sub-title {
         font-size: 15px;
       }
 
-      .stats {
+      .election-banner {
+        margin-top: 16px;
+        font-size: 13px;
+        padding: 12px;
+        border-radius: 14px;
+      }
+
+      .container {
+        padding: 16px 12px 24px;
+      }
+
+      .intro-main h2 {
+        font-size: 20px;
+      }
+
+      .search-row {
         grid-template-columns: 1fr;
+      }
+
+      .map-note {
+        padding: 12px 14px;
+      }
+
+      #map {
+        height: 520px;
+        border-radius: 18px;
+        border-width: 4px;
+      }
+
+      .section-title {
+        flex-direction: column;
+        align-items: flex-start;
       }
 
       .list {
         grid-template-columns: 1fr;
       }
 
+      .card-image-wrap {
+        height: 190px;
+      }
+
+      .marker-label {
+        max-width: 115px;
+        font-size: 11px;
+        white-space: normal;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .title-area h1 {
+        font-size: 18px;
+      }
+
+      .logo-card {
+        width: 56px;
+        height: 56px;
+      }
+
       #map {
-        height: 420px;
+        height: 480px;
       }
     }
   </style>
 </head>
 
 <body>
-  <div class="header">
-    <h1>Bản đồ số danh lam thắng cảnh</h1>
-    <p>Xã Tân Yên, tỉnh Bắc Ninh</p>
-  </div>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="top-line">
+        Đoàn Thanh niên - Hội Liên hiệp Thanh niên Việt Nam xã Tân Yên
+      </div>
 
-  <div class="container">
-    <div class="guide">
+      <div class="header-main">
+        <div class="logo-card">
+          <img src="images/logo-doan-thanh-nien.png" alt="Logo Đoàn Thanh niên">
+        </div>
+
+        <div class="title-area">
+          <div class="badge">Công trình thanh niên chuyển đổi số</div>
+          <h1>Công trình thanh niên<br>"Bản đồ số xã Tân Yên"</h1>
+          <div class="sub-title">Xã Tân Yên, tỉnh Bắc Ninh</div>
+        </div>
+
+        <div class="logo-card">
+          <img src="images/logo-hoi-lhtn-viet-nam.png" alt="Logo Hội Liên hiệp Thanh niên Việt Nam">
+        </div>
+      </div>
+
+      <div class="election-banner">
+        Chào mừng thành công bầu cử đại biểu Quốc hội khóa XVI và bầu cử HĐND các cấp nhiệm kỳ 2026-2031
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="intro-card">
+      <div class="intro-main">
+        <h2>Bản đồ số phục vụ tra cứu địa danh trên địa bàn xã Tân Yên</h2>
+        <p>
+          Công trình thanh niên “Bản đồ số xã Tân Yên” hỗ trợ người dân và du khách tra cứu nhanh các địa danh,
+          danh lam thắng cảnh, di tích, địa điểm tiêu biểu trên địa bàn xã; xem vị trí trực quan trên bản đồ và
+          nhận chỉ đường thuận tiện bằng điện thoại thông minh.
+        </p>
+      </div>
+
+      <div class="intro-side">
+        <div class="intro-icon">📍</div>
+        <div>
+          <strong>Tra cứu nhanh</strong>
+          <span>Bấm vào biểu tượng trên bản đồ hoặc chọn thẻ thông tin bên dưới để xem chi tiết địa điểm.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="guide">
       <strong>Hướng dẫn sử dụng:</strong><br>
-      Nhập tên địa danh, thôn hoặc địa điểm để tìm kiếm. Bấm vào điểm trên bản đồ hoặc thẻ thông tin để xem chi tiết và chọn “Chỉ đường”.
-    </div>
+      Nhập tên địa danh, khu vực hoặc địa điểm vào ô tìm kiếm. Bấm vào điểm trên bản đồ hoặc thẻ thông tin để xem chi tiết và chọn “Chỉ đường”.
+    </section>
 
-    <div class="stats">
-      <div class="stat-card">
-        <strong id="totalPlaces">0</strong>
-        Địa danh
+    <div class="search-row">
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Nhập tên địa danh, khu vực hoặc địa điểm..." />
       </div>
-      <div class="stat-card">
-        <strong id="totalSpecialPlaces">0</strong>
-        Di tích, địa điểm tiêu biểu
-      </div>
-      <div class="stat-card">
-        <strong id="totalVillages">0</strong>
-        Thôn/khu vực
-      </div>
-    </div>
-
-    <div class="search-box">
-      <input type="text" id="searchInput" placeholder="Nhập tên địa danh, thôn hoặc địa điểm..." />
+      <button class="map-note" type="button" onclick="resetMap()">Xem toàn bản đồ</button>
     </div>
 
     <div id="map"></div>
 
+    <section class="section-title">
+      <h2>Danh sách địa danh trên bản đồ</h2>
+      <span>Chọn từng địa danh để xem vị trí và chỉ đường</span>
+    </section>
+
     <div class="list" id="locationList"></div>
 
-    <div class="footer">
-      Công trình do Đoàn Thanh niên - Hội Liên hiệp Thanh niên xã Tân Yên thiết kế.
-    </div>
-  </div>
+    <footer class="footer">
+      <strong>Công trình thanh niên “Bản đồ số xã Tân Yên”</strong><br>
+      Do Đoàn Thanh niên - Hội Liên hiệp Thanh niên Việt Nam xã Tân Yên thực hiện.
+    </footer>
+  </main>
 
   <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
 
@@ -292,7 +734,9 @@
       }
     ];
 
-    const map = L.map("map").setView([21.3852, 106.1203], 13);
+    const map = L.map("map", {
+      scrollWheelZoom: true
+    }).setView([21.3852, 106.1203], 13);
 
     L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
       attribution: "&copy; OpenStreetMap contributors &copy; CARTO",
@@ -312,7 +756,7 @@
           <img class="popup-image" src="${location.image}" alt="${location.name}" onerror="this.style.display='none'">
           <span class="popup-title"><strong>${location.icon} ${location.name}</strong></span>
           <b>Địa điểm:</b> ${location.place}<br>
-          <b>Thôn/khu vực:</b> ${location.village}<br>
+          <b>Khu vực:</b> ${location.village}<br>
           <b>Loại hình:</b> ${location.type}<br>
           <b>Ghi chú:</b> ${location.note}<br>
           <a class="btn" href="${directionLink(location.lat, location.lng)}" target="_blank">Chỉ đường</a>
@@ -323,10 +767,15 @@
     locations.forEach((location) => {
       const customIcon = L.divIcon({
         className: "custom-marker",
-        html: `<div class="marker-icon">${location.icon}</div>`,
-        iconSize: [44, 44],
-        iconAnchor: [22, 44],
-        popupAnchor: [0, -40]
+        html: `
+          <div class="marker-wrapper">
+            <div class="marker-icon">${location.icon}</div>
+            <div class="marker-label">${location.name}</div>
+          </div>
+        `,
+        iconSize: [170, 82],
+        iconAnchor: [85, 41],
+        popupAnchor: [0, -34]
       });
 
       const marker = L.marker([location.lat, location.lng], {
@@ -343,8 +792,14 @@
     );
 
     map.fitBounds(bounds, {
-      padding: [40, 40]
+      padding: [60, 60]
     });
+
+    function resetMap() {
+      map.fitBounds(bounds, {
+        padding: [60, 60]
+      });
+    }
 
     function renderList(data) {
       const list = document.getElementById("locationList");
@@ -360,38 +815,31 @@
         card.className = "card";
 
         card.innerHTML = `
-          <img class="card-image" src="${location.image}" alt="${location.name}" onerror="this.style.display='none'">
+          <div class="card-image-wrap">
+            <img class="card-image" src="${location.image}" alt="${location.name}" onerror="this.style.display='none'">
+            <div class="type-badge">${location.type}</div>
+          </div>
           <h3>${location.icon} ${location.name}</h3>
           <p><strong>Địa điểm:</strong> ${location.place}</p>
-          <p><strong>Thôn/khu vực:</strong> ${location.village}</p>
-          <p><strong>Loại hình:</strong> ${location.type}</p>
+          <p><strong>Khu vực:</strong> ${location.village}</p>
           <p><strong>Ghi chú:</strong> ${location.note}</p>
-          <a class="btn" href="${directionLink(location.lat, location.lng)}" target="_blank" onclick="event.stopPropagation()">Chỉ đường</a>
+          <a class="btn" href="${directionLink(location.lat, location.lng)}" target="_blank" onclick="event.stopPropagation()">📍 Chỉ đường</a>
         `;
 
         card.addEventListener("click", () => {
           map.setView([location.lat, location.lng], 16);
           const index = locations.indexOf(location);
           markers[index].openPopup();
+
+          const mapElement = document.getElementById("map");
+          mapElement.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+          });
         });
 
         list.appendChild(card);
       });
-    }
-
-    function updateStats() {
-      document.getElementById("totalPlaces").textContent = locations.length;
-
-      const specialPlaces = locations.filter(item =>
-        item.type.toLowerCase().includes("di tích") ||
-        item.type.toLowerCase().includes("tiêu biểu") ||
-        item.type.toLowerCase().includes("danh lam")
-      );
-
-      document.getElementById("totalSpecialPlaces").textContent = specialPlaces.length;
-
-      const villages = new Set(locations.map(item => item.village));
-      document.getElementById("totalVillages").textContent = villages.size;
     }
 
     document.getElementById("searchInput").addEventListener("input", function () {
@@ -415,7 +863,6 @@
     });
 
     renderList(locations);
-    updateStats();
   </script>
 </body>
 </html>
