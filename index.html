@@ -246,6 +246,49 @@
       color: #006bc7;
     }
 
+    .legend {
+      margin-top: 14px;
+      padding: 14px;
+      background: #f0f9ff;
+      border: 1px solid #cdeeff;
+      border-radius: 14px;
+    }
+
+    .legend-title {
+      font-weight: 800;
+      color: #006bc7;
+      margin-bottom: 10px;
+    }
+
+    .legend-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 14px;
+      color: #27465c;
+      line-height: 1.4;
+    }
+
+    .legend-icon {
+      width: 32px;
+      height: 32px;
+      min-width: 32px;
+      border-radius: 50%;
+      color: white;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 17px;
+      border: 3px solid #ffffff;
+      box-shadow: 0 4px 10px rgba(0, 74, 137, 0.20);
+    }
+
     .search-row {
       display: grid;
       grid-template-columns: 1fr auto;
@@ -360,7 +403,6 @@
       position: absolute;
       left: 12px;
       top: 12px;
-      background: rgba(0, 126, 229, 0.94);
       color: white;
       padding: 7px 11px;
       border-radius: 999px;
@@ -433,7 +475,6 @@
     .marker-icon {
       width: 46px;
       height: 46px;
-      background: linear-gradient(135deg, #007ee5, #00a6ff);
       color: white;
       border: 4px solid #ffffff;
       border-radius: 50%;
@@ -446,20 +487,36 @@
 
     .marker-label {
       margin-top: 6px;
-      background: rgba(255,255,255,0.97);
-      color: #005fb3;
+      background: #ffffff;
+      color: #003b73;
       font-size: 11px;
-      font-weight: 800;
+      font-weight: 900;
       line-height: 1.25;
-      padding: 5px 8px;
-      border-radius: 10px;
+      padding: 5px 9px;
+      border-radius: 999px;
       white-space: nowrap;
-      box-shadow: 0 4px 10px rgba(0, 74, 137, 0.18);
-      border: 1px solid #cce8ff;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.28);
+      border: 2px solid #0094ff;
       text-align: center;
-      max-width: 160px;
+      max-width: 170px;
       overflow: hidden;
       text-overflow: ellipsis;
+    }
+
+    .special-national {
+      background: linear-gradient(135deg, #d60000, #ff9d00);
+    }
+
+    .national {
+      background: linear-gradient(135deg, #8b0000, #d40000);
+    }
+
+    .provincial {
+      background: linear-gradient(135deg, #007ee5, #00a6ff);
+    }
+
+    .highlight {
+      background: linear-gradient(135deg, #00a36c, #00c98b);
     }
 
     .popup-box {
@@ -593,6 +650,21 @@
         font-size: 24px;
       }
 
+      .legend-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .legend-item {
+        font-size: 13px;
+      }
+
+      .legend-icon {
+        width: 30px;
+        height: 30px;
+        min-width: 30px;
+        font-size: 15px;
+      }
+
       .search-row {
         grid-template-columns: 1fr;
         gap: 10px;
@@ -653,10 +725,14 @@
       }
 
       .marker-label {
-        max-width: 92px;
+        max-width: 105px;
         font-size: 9.5px;
         white-space: normal;
-        padding: 4px 6px;
+        padding: 4px 7px;
+        border-radius: 12px;
+        color: #002f5f;
+        background: #ffffff;
+        border: 2px solid #0094ff;
       }
 
       .popup-image {
@@ -743,6 +819,32 @@
     <section class="guide">
       <strong>Hướng dẫn sử dụng:</strong><br>
       Nhập tên địa danh, khu vực hoặc địa điểm vào ô tìm kiếm. Bấm vào điểm trên bản đồ hoặc thẻ thông tin để xem chi tiết và chọn “Chỉ đường”.
+
+      <div class="legend">
+        <div class="legend-title">Chú giải biểu tượng trên bản đồ:</div>
+
+        <div class="legend-grid">
+          <div class="legend-item">
+            <span class="legend-icon special-national">⭐</span>
+            <span>Di tích cấp quốc gia đặc biệt</span>
+          </div>
+
+          <div class="legend-item">
+            <span class="legend-icon national">🏛️</span>
+            <span>Di tích cấp quốc gia</span>
+          </div>
+
+          <div class="legend-item">
+            <span class="legend-icon provincial">🛕</span>
+            <span>Di tích cấp tỉnh</span>
+          </div>
+
+          <div class="legend-item">
+            <span class="legend-icon highlight">📍</span>
+            <span>Địa điểm tiêu biểu / danh lam thắng cảnh</span>
+          </div>
+        </div>
+      </div>
     </section>
 
     <div class="search-row">
@@ -778,7 +880,6 @@
         type: "Địa điểm tiêu biểu",
         note: "Nơi diễn ra các hoạt động trung tâm của xã Tân Yên.",
         image: "images/quang-truong-luong-van-nam.jpg",
-        icon: "🏛️",
         lat: 21.386421332205895,
         lng: 106.12936931845796
       },
@@ -789,7 +890,6 @@
         type: "Di tích trọng điểm",
         note: "Di tích trọng điểm của xã Tân Yên.",
         image: "images/chua-phuc-son.jpg",
-        icon: "🛕",
         lat: 21.383990768365607,
         lng: 106.11133442207652
       },
@@ -800,7 +900,6 @@
         type: "Di tích cấp quốc gia",
         note: "Thế kỷ XVII; thờ Cao Sơn - Quý Minh. Đề Thám đã cho lập căn cứ ở trên núi Yên Ngựa, khu vực đình Cao Thượng, và thường tổ chức hội họp, lui tới đình.",
         image: "images/dinh-caothuong.jpg",
-        icon: "🛕",
         lat: 21.379743995148612,
         lng: 106.135674338706
       },
@@ -811,7 +910,6 @@
         type: "Di tích cấp quốc gia đặc biệt",
         note: "Thờ Cao Sơn - Quý Minh, là ngôi đình to đẹp nổi tiếng, được xây dựng vào đời vua Lê Hiển Tông. Đề Thám xoay đình về hướng Đông Nam, xây thêm 2 tả vu, hữu vu và nghi môn.",
         image: "images/dinh-noi.jpg",
-        icon: "🛕",
         lat: 21.369916690313506,
         lng: 106.1397083675413
       },
@@ -822,7 +920,6 @@
         type: "Di tích cấp quốc gia",
         note: "Chùa được xây dựng từ thời Lê Cảnh Hưng tam niên, năm 1742, dưới triều vua Lê Hiển Tông.",
         image: "images/chua-kim-trang.jpg",
-        icon: "🛕",
         lat: 21.34276189011102,
         lng: 106.13967776754076
       },
@@ -833,7 +930,6 @@
         type: "Di tích cấp quốc gia",
         note: "Nơi an nghỉ của Giáp Đăng Luân, một võ quan thời Lê Trung Hưng, làm việc dưới triều Lê - Trịnh. Công trình được xây dựng trong khoảng 1728-1733, khi ông còn sống.",
         image: "images/giap-dang-luan.jpg",
-        icon: "🛕",
         lat: 21.33655044334248,
         lng: 106.1434460573037
       },
@@ -844,7 +940,6 @@
         type: "Di tích cấp tỉnh",
         note: "Chùa Giã, chùa Kim Sơn tự, được xây dựng từ thế kỷ 18 thời Lê Trung Hưng. Đây là trung tâm sinh hoạt văn hóa tín ngưỡng, tôn giáo chung của nhân dân địa phương. Đình, chùa Giã hiện còn lưu giữ một số hiện vật có giá trị lịch sử như bộ bát bửu, nhang án, sập gỗ, ngai thờ, bát hương, hệ thống tượng Phật.",
         image: "images/chuakimson.jpg",
-        icon: "🛕",
         lat: 21.39323678615806,
         lng: 106.12334610167864
       },
@@ -855,7 +950,6 @@
         type: "Di tích cấp tỉnh",
         note: "Chùa Phán Thú tên chữ là Long Sơn Tự, xưa thuộc Tổng Bảo Lộc Sơn, huyện Yên Thế và nay thuộc xã Tân Yên. Trong chùa còn những hiện vật cổ quý như hệ thống tượng Phật gỗ, 2 biển gỗ, bia hậu Phật dựng năm Bảo Đại thứ 4, năm 1929.",
         image: "images/chuaphanthu.jpg",
-        icon: "🛕",
         lat: 21.35470894562282,
         lng: 106.15187138424616
       },
@@ -866,7 +960,6 @@
         type: "Di tích cấp tỉnh",
         note: "Chùa Non Tiên là địa điểm sinh hoạt tín ngưỡng tâm linh linh thiêng của nhân dân trong vùng. Năm 2010, chùa được Chủ tịch UBND tỉnh công nhận là di tích lịch sử văn hóa cấp tỉnh.",
         image: "images/chuanontien.jpg",
-        icon: "🛕",
         lat: 21.378357145373002,
         lng: 106.15289363807464
       },
@@ -877,7 +970,6 @@
         type: "Di tích cấp tỉnh",
         note: "Đây là một ngôi chùa cổ, di tích lịch sử - văn hóa thờ Phật đã được xếp hạng cấp tỉnh. Chùa nổi tiếng linh thiêng và là điểm sinh hoạt văn hóa tâm linh của người dân địa phương.",
         image: "images/chuacoam.jpg",
-        icon: "🛕",
         lat: 21.39727837762234,
         lng: 106.14049910021247
       },
@@ -888,7 +980,6 @@
         type: "Di tích cấp tỉnh",
         note: "Dinh vốn là làng cổ, hình thành cách đây chừng 5 thế kỷ. Tại đây có đền thờ Nhất phẩm quận công Dương Hùng Lượng thời nhà Mạc. Vào cuối thế kỷ 19 đầu thế kỷ 20, nhiều tướng lĩnh con em làng Dinh đã gia nhập nghĩa quân Hoàng Hoa Thám, đánh giặc Pháp trên núi rừng Yên Thế.",
         image: "images/duonghungluong.jpg",
-        icon: "🛕",
         lat: 21.396609599851004,
         lng: 106.10027372283005
       },
@@ -899,7 +990,6 @@
         type: "Di tích cấp tỉnh",
         note: "Đình làng Bùi thuộc thôn Bậu, xã Tân Yên, được xây dựng từ đời vua Lê Cảnh Hưng thứ 23, năm Nhâm Ngọ 1762. Đình thờ Cao Sơn - Quý Minh, những vị thần có công bảo quốc hộ dân. Năm 2010, Đình Bùi được UBND tỉnh công nhận là Di tích kiến trúc nghệ thuật cấp tỉnh.",
         image: "images/dinhbui.jpg",
-        icon: "🛕",
         lat: 21.396022640875398,
         lng: 106.1475436899604
       },
@@ -910,7 +1000,6 @@
         type: "Di tích cấp tỉnh",
         note: "Đền Quan là trung tâm sinh hoạt văn hóa, tín ngưỡng của nhân dân thôn Bùi, xã Tân Yên. Đền thờ hai vị tướng thời Hùng Vương thứ 18 có công dẹp giặc, mang lại thái bình cho nhân dân, được tôn là Cao Sơn Đại Vương và Quý Minh Đại Vương.",
         image: "images/denquan.jpg",
-        icon: "🛕",
         lat: 21.39154187972324,
         lng: 106.13839643512341
       },
@@ -921,7 +1010,6 @@
         type: "Di tích cấp tỉnh",
         note: "Điều đặc biệt tại đình Hoãn là nơi đây còn bảo lưu được sắc phong niên hiệu Khải Định thứ 9, năm 1924 và trên các đầu cột, xà khắc chữ Nho ghi người cung tiến, giống với đình Nội gần kề.",
         image: "images/dinhhoan.jpg",
-        icon: "🛕",
         lat: 21.371209029355605,
         lng: 106.15066144979305
       },
@@ -932,7 +1020,6 @@
         type: "Di tích cấp tỉnh",
         note: "Giá trị lịch sử, văn hóa của lăng được lưu tại những tấm bia đá dựng vào tháng 4 năm Giáp Ngọ, niên hiệu Cảnh Hưng thứ 35, tức năm 1774, bổ sung tư liệu lịch sử quý về cuộc đời, sự nghiệp và công đức của vị quan Thái bảo Nguyễn Giáp Sùng.",
         image: "images/langquanthaibao.jpg",
-        icon: "🛕",
         lat: 21.36073763710665,
         lng: 106.15087597393331
       },
@@ -943,7 +1030,6 @@
         type: "Di tích cấp tỉnh",
         note: "Đình Ngò là địa điểm sinh hoạt văn hóa tín ngưỡng của nhân dân địa phương, gắn với truyền thống lịch sử, văn hóa trên địa bàn xã Tân Yên.",
         image: "images/dinhngo.jpg",
-        icon: "🛕",
         lat: 21.36073763710665,
         lng: 106.15087597393331
       },
@@ -954,7 +1040,6 @@
         type: "Di tích cấp tỉnh",
         note: "Đình Nguyễn là di sản kiến trúc thời Lê Trung Hưng, thế kỷ 18, được trùng tu vào thế kỷ 19. Hiện đình còn lưu giữ nhiều di vật, cổ vật có niên đại thời Nguyễn có giá trị như bài vị, mâm bồng, hương án, cây nến, bát hương, ngai thờ. Đặc biệt, đình Nguyễn còn lưu giữ tấm bia đá ghi lại tên người công đức tu sửa niên hiệu Cảnh Hưng thứ 45, năm 1784.",
         image: "images/dinhnguyen.jpg",
-        icon: "🛕",
         lat: 21.34334026407275,
         lng: 106.16295746938853
       }
@@ -973,17 +1058,54 @@
 
     const markers = [];
 
+    function getCategoryInfo(type) {
+      const normalizedType = type.toLowerCase();
+
+      if (normalizedType.includes("quốc gia đặc biệt")) {
+        return {
+          icon: "⭐",
+          className: "special-national",
+          label: "Di tích cấp quốc gia đặc biệt"
+        };
+      }
+
+      if (normalizedType.includes("quốc gia")) {
+        return {
+          icon: "🏛️",
+          className: "national",
+          label: "Di tích cấp quốc gia"
+        };
+      }
+
+      if (normalizedType.includes("cấp tỉnh")) {
+        return {
+          icon: "🛕",
+          className: "provincial",
+          label: "Di tích cấp tỉnh"
+        };
+      }
+
+      return {
+        icon: "📍",
+        className: "highlight",
+        label: "Địa điểm tiêu biểu / danh lam thắng cảnh"
+      };
+    }
+
     function directionLink(lat, lng) {
       return `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
     }
 
     function createPopup(location) {
+      const category = getCategoryInfo(location.type);
+
       return `
         <div class="popup-box">
           <img class="popup-image" src="${location.image}" alt="${location.name}" onerror="this.style.display='none'">
-          <span class="popup-title"><strong>${location.icon} ${location.name}</strong></span>
+          <span class="popup-title"><strong>${category.icon} ${location.name}</strong></span>
           <b>Địa điểm:</b> ${location.place}<br>
           <b>Khu vực:</b> ${location.village}<br>
+          <b>Phân loại:</b> ${category.label}<br>
           <b>Loại hình:</b> ${location.type}<br>
           <b>Ghi chú:</b> ${location.note}<br>
           <a class="btn" href="${directionLink(location.lat, location.lng)}" target="_blank">📍 Chỉ đường</a>
@@ -992,11 +1114,13 @@
     }
 
     locations.forEach((location) => {
+      const category = getCategoryInfo(location.type);
+
       const customIcon = L.divIcon({
         className: "custom-marker",
         html: `
           <div class="marker-wrapper">
-            <div class="marker-icon">${location.icon}</div>
+            <div class="marker-icon ${category.className}">${category.icon}</div>
             <div class="marker-label">${location.name}</div>
           </div>
         `,
@@ -1038,17 +1162,19 @@
       }
 
       data.forEach((location) => {
+        const category = getCategoryInfo(location.type);
         const card = document.createElement("div");
         card.className = "card";
 
         card.innerHTML = `
           <div class="card-image-wrap">
             <img class="card-image" src="${location.image}" alt="${location.name}" onerror="this.style.display='none'">
-            <div class="type-badge">${location.type}</div>
+            <div class="type-badge ${category.className}">${category.label}</div>
           </div>
-          <h3>${location.icon} ${location.name}</h3>
+          <h3>${category.icon} ${location.name}</h3>
           <p><strong>Địa điểm:</strong> ${location.place}</p>
           <p><strong>Khu vực:</strong> ${location.village}</p>
+          <p><strong>Loại hình:</strong> ${location.type}</p>
           <p><strong>Ghi chú:</strong> ${location.note}</p>
           <a class="btn" href="${directionLink(location.lat, location.lng)}" target="_blank" onclick="event.stopPropagation()">📍 Chỉ đường</a>
         `;
