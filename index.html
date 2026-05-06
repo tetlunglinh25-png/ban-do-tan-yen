@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Công trình thanh niên - Bản đồ số xã Tân Yên</title>
-  <meta name="description" content="Công trình thanh niên Bản đồ số xã Tân Yên, tỉnh Bắc Ninh. Tra cứu nhanh các địa danh, danh lam thắng cảnh, vị trí trên bản đồ và chỉ đường." />
+  <meta name="description" content="Công trình thanh niên Bản đồ số xã Tân Yên, tỉnh Bắc Ninh. Tra cứu nhanh các địa danh, danh lam thắng cảnh, di tích, vị trí trên bản đồ và chỉ đường." />
 
   <meta property="og:title" content="Công trình thanh niên - Bản đồ số xã Tân Yên" />
   <meta property="og:description" content="Công trình thanh niên chào mừng thành công bầu cử đại biểu Quốc hội khóa XVI và bầu cử HĐND các cấp nhiệm kỳ 2026-2031." />
@@ -38,7 +38,7 @@
     body {
       margin: 0;
       background:
-        radial-gradient(circle at top left, rgba(0, 174, 255, 0.16), transparent 32%),
+        radial-gradient(circle at top left, rgba(0, 174, 255, 0.18), transparent 30%),
         radial-gradient(circle at top right, rgba(0, 91, 187, 0.16), transparent 28%),
         linear-gradient(180deg, #eaf7ff 0%, #f7fbff 45%, #ffffff 100%);
       color: #123047;
@@ -69,18 +69,6 @@
       pointer-events: none;
     }
 
-    .hero::after {
-      content: "";
-      position: absolute;
-      width: 420px;
-      height: 420px;
-      right: -160px;
-      top: -180px;
-      background: rgba(255,255,255,0.14);
-      border-radius: 50%;
-      pointer-events: none;
-    }
-
     .hero-inner {
       position: relative;
       max-width: 1180px;
@@ -91,7 +79,7 @@
     .top-line {
       text-align: center;
       font-weight: 700;
-      letter-spacing: 1.5px;
+      letter-spacing: 1.4px;
       font-size: 14px;
       text-transform: uppercase;
       color: #d9f3ff;
@@ -189,7 +177,7 @@
 
     .intro-main,
     .intro-side {
-      background: rgba(255,255,255,0.88);
+      background: rgba(255,255,255,0.9);
       border: 1px solid #d6efff;
       border-radius: 18px;
       padding: 18px;
@@ -443,8 +431,8 @@
     }
 
     .marker-icon {
-      width: 48px;
-      height: 48px;
+      width: 46px;
+      height: 46px;
       background: linear-gradient(135deg, #007ee5, #00a6ff);
       color: white;
       border: 4px solid #ffffff;
@@ -452,24 +440,24 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 23px;
+      font-size: 22px;
       box-shadow: 0 7px 16px rgba(0, 74, 137, 0.35);
     }
 
     .marker-label {
-      margin-top: 7px;
+      margin-top: 6px;
       background: rgba(255,255,255,0.97);
       color: #005fb3;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 800;
       line-height: 1.25;
-      padding: 5px 9px;
+      padding: 5px 8px;
       border-radius: 10px;
       white-space: nowrap;
       box-shadow: 0 4px 10px rgba(0, 74, 137, 0.18);
       border: 1px solid #cce8ff;
       text-align: center;
-      max-width: 170px;
+      max-width: 160px;
       overflow: hidden;
       text-overflow: ellipsis;
     }
@@ -509,18 +497,19 @@
 
     @media (max-width: 900px) {
       .header-main {
-        grid-template-columns: 82px 1fr 82px;
-        gap: 10px;
+        grid-template-columns: 78px 1fr 78px;
+        gap: 9px;
       }
 
       .logo-card {
-        width: 80px;
-        height: 80px;
+        width: 76px;
+        height: 76px;
         border-radius: 20px;
+        padding: 9px;
       }
 
       .title-area h1 {
-        font-size: 29px;
+        font-size: 28px;
       }
 
       .intro-card {
@@ -530,61 +519,93 @@
 
     @media (max-width: 768px) {
       .hero {
-        padding: 20px 12px 22px;
+        padding: 18px 10px 20px;
       }
 
       .top-line {
-        font-size: 12px;
-        margin-bottom: 12px;
+        font-size: 11px;
+        letter-spacing: 0.7px;
+        margin-bottom: 10px;
       }
 
       .header-main {
-        grid-template-columns: 64px 1fr 64px;
-        gap: 8px;
+        grid-template-columns: 54px 1fr 54px;
+        gap: 6px;
       }
 
       .logo-card {
-        width: 62px;
-        height: 62px;
-        border-radius: 16px;
-        padding: 7px;
+        width: 52px;
+        height: 52px;
+        border-radius: 14px;
+        padding: 6px;
       }
 
       .badge {
-        font-size: 12px;
-        padding: 6px 10px;
-        margin-bottom: 9px;
+        font-size: 11px;
+        padding: 5px 9px;
+        margin-bottom: 8px;
       }
 
       .title-area h1 {
-        font-size: 21px;
+        font-size: 17px;
+        line-height: 1.28;
       }
 
       .title-area .sub-title {
-        font-size: 15px;
+        font-size: 13px;
+        margin-top: 7px;
       }
 
       .election-banner {
-        margin-top: 16px;
-        font-size: 13px;
-        padding: 12px;
-        border-radius: 14px;
+        margin-top: 14px;
+        font-size: 12px;
+        padding: 10px;
+        border-radius: 13px;
       }
 
       .container {
-        padding: 16px 12px 24px;
+        padding: 14px 10px 22px;
+      }
+
+      .intro-main,
+      .intro-side,
+      .guide {
+        border-radius: 14px;
+        padding: 14px;
       }
 
       .intro-main h2 {
-        font-size: 20px;
+        font-size: 18px;
+      }
+
+      .intro-main p {
+        font-size: 14px;
+      }
+
+      .intro-side {
+        align-items: flex-start;
+      }
+
+      .intro-icon {
+        width: 46px;
+        height: 46px;
+        min-width: 46px;
+        font-size: 24px;
       }
 
       .search-row {
         grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .search-box input {
+        font-size: 14px;
+        padding: 13px 14px;
       }
 
       .map-note {
         padding: 12px 14px;
+        font-size: 14px;
       }
 
       #map {
@@ -598,33 +619,73 @@
         align-items: flex-start;
       }
 
+      .section-title h2 {
+        font-size: 20px;
+      }
+
       .list {
         grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .card {
+        border-radius: 17px;
+        padding: 12px;
       }
 
       .card-image-wrap {
-        height: 190px;
+        height: 185px;
+      }
+
+      .card h3 {
+        font-size: 18px;
+      }
+
+      .card p {
+        font-size: 14px;
+      }
+
+      .marker-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 19px;
+        border-width: 3px;
       }
 
       .marker-label {
-        max-width: 115px;
-        font-size: 11px;
+        max-width: 92px;
+        font-size: 9.5px;
         white-space: normal;
+        padding: 4px 6px;
+      }
+
+      .popup-image {
+        width: 215px;
+        height: 125px;
+      }
+
+      .popup-box {
+        max-width: 230px;
+        font-size: 13px;
       }
     }
 
     @media (max-width: 430px) {
       .title-area h1 {
-        font-size: 18px;
+        font-size: 15.5px;
       }
 
       .logo-card {
-        width: 56px;
-        height: 56px;
+        width: 48px;
+        height: 48px;
       }
 
       #map {
-        height: 480px;
+        height: 490px;
+      }
+
+      .card-image-wrap {
+        height: 170px;
       }
     }
   </style>
@@ -731,12 +792,178 @@
         icon: "🛕",
         lat: 21.383990768365607,
         lng: 106.11133442207652
+      },
+      {
+        name: "Đình Cao Thượng",
+        place: "Đình Cao Thượng",
+        village: "Thôn Đình, xã Tân Yên",
+        type: "Di tích cấp quốc gia",
+        note: "Thế kỷ XVII; thờ Cao Sơn - Quý Minh. Đề Thám đã cho lập căn cứ ở trên núi Yên Ngựa, khu vực đình Cao Thượng, và thường tổ chức hội họp, lui tới đình.",
+        image: "images/dinh-caothuong.jpg",
+        icon: "🛕",
+        lat: 21.379743995148612,
+        lng: 106.135674338706
+      },
+      {
+        name: "Đình Nội",
+        place: "Đình Nội",
+        village: "Thôn Nội Hạc, xã Tân Yên",
+        type: "Di tích cấp quốc gia đặc biệt",
+        note: "Thờ Cao Sơn - Quý Minh, là ngôi đình to đẹp nổi tiếng, được xây dựng vào đời vua Lê Hiển Tông. Đề Thám xoay đình về hướng Đông Nam, xây thêm 2 tả vu, hữu vu và nghi môn.",
+        image: "images/dinh-noi.jpg",
+        icon: "🛕",
+        lat: 21.369916690313506,
+        lng: 106.1397083675413
+      },
+      {
+        name: "Chùa Kim Tràng",
+        place: "Chùa Kim Tràng",
+        village: "Thôn Kim Tràng, xã Tân Yên",
+        type: "Di tích cấp quốc gia",
+        note: "Chùa được xây dựng từ thời Lê Cảnh Hưng tam niên, năm 1742, dưới triều vua Lê Hiển Tông.",
+        image: "images/chua-kim-trang.jpg",
+        icon: "🛕",
+        lat: 21.34276189011102,
+        lng: 106.13967776754076
+      },
+      {
+        name: "Lăng quận công Giáp Đăng Luân",
+        place: "Lăng quận công Giáp Đăng Luân",
+        village: "Thôn Ngọc Trai, xã Tân Yên",
+        type: "Di tích cấp quốc gia",
+        note: "Nơi an nghỉ của Giáp Đăng Luân, một võ quan thời Lê Trung Hưng, làm việc dưới triều Lê - Trịnh. Công trình được xây dựng trong khoảng 1728-1733, khi ông còn sống.",
+        image: "images/giap-dang-luan.jpg",
+        icon: "🛕",
+        lat: 21.33655044334248,
+        lng: 106.1434460573037
+      },
+      {
+        name: "Chùa Kim Sơn",
+        place: "Chùa Kim Sơn",
+        village: "Thôn Đình Giã, xã Tân Yên",
+        type: "Di tích cấp tỉnh",
+        note: "Chùa Giã, chùa Kim Sơn tự, được xây dựng từ thế kỷ 18 thời Lê Trung Hưng. Đây là trung tâm sinh hoạt văn hóa tín ngưỡng, tôn giáo chung của nhân dân địa phương. Đình, chùa Giã hiện còn lưu giữ một số hiện vật có giá trị lịch sử như bộ bát bửu, nhang án, sập gỗ, ngai thờ, bát hương, hệ thống tượng Phật.",
+        image: "images/chuakimson.jpg",
+        icon: "🛕",
+        lat: 21.39323678615806,
+        lng: 106.12334610167864
+      },
+      {
+        name: "Chùa Phán Thú",
+        place: "Chùa Phán Thú",
+        village: "Thôn Um Ngò, xã Tân Yên",
+        type: "Di tích cấp tỉnh",
+        note: "Chùa Phán Thú tên chữ là Long Sơn Tự, xưa thuộc Tổng Bảo Lộc Sơn, huyện Yên Thế và nay thuộc xã Tân Yên. Trong chùa còn những hiện vật cổ quý như hệ thống tượng Phật gỗ, 2 biển gỗ, bia hậu Phật dựng năm Bảo Đại thứ 4, năm 1929.",
+        image: "images/chuaphanthu.jpg",
+        icon: "🛕",
+        lat: 21.35470894562282,
+        lng: 106.15187138424616
+      },
+      {
+        name: "Chùa Non Tiên",
+        place: "Chùa Non Tiên",
+        village: "Thôn Ngoài Hạ, xã Tân Yên",
+        type: "Di tích cấp tỉnh",
+        note: "Chùa Non Tiên là địa điểm sinh hoạt tín ngưỡng tâm linh linh thiêng của nhân dân trong vùng. Năm 2010, chùa được Chủ tịch UBND tỉnh công nhận là di tích lịch sử văn hóa cấp tỉnh.",
+        image: "images/chuanontien.jpg",
+        icon: "🛕",
+        lat: 21.378357145373002,
+        lng: 106.15289363807464
+      },
+      {
+        name: "Chùa Cổ Am",
+        place: "Chùa Cổ Am",
+        village: "Thôn Tân Lập Cao Thượng, xã Tân Yên",
+        type: "Di tích cấp tỉnh",
+        note: "Đây là một ngôi chùa cổ, di tích lịch sử - văn hóa thờ Phật đã được xếp hạng cấp tỉnh. Chùa nổi tiếng linh thiêng và là điểm sinh hoạt văn hóa tâm linh của người dân địa phương.",
+        image: "images/chuacoam.jpg",
+        icon: "🛕",
+        lat: 21.39727837762234,
+        lng: 106.14049910021247
+      },
+      {
+        name: "Đền Quận Công Dương Hùng Lượng",
+        place: "Đền Quận Công Dương Hùng Lượng",
+        village: "Thôn Dinh Thẳm, xã Tân Yên",
+        type: "Di tích cấp tỉnh",
+        note: "Dinh vốn là làng cổ, hình thành cách đây chừng 5 thế kỷ. Tại đây có đền thờ Nhất phẩm quận công Dương Hùng Lượng thời nhà Mạc. Vào cuối thế kỷ 19 đầu thế kỷ 20, nhiều tướng lĩnh con em làng Dinh đã gia nhập nghĩa quân Hoàng Hoa Thám, đánh giặc Pháp trên núi rừng Yên Thế.",
+        image: "images/duonghungluong.jpg",
+        icon: "🛕",
+        lat: 21.396609599851004,
+        lng: 106.10027372283005
+      },
+      {
+        name: "Đình Bùi",
+        place: "Đình Bùi",
+        village: "Thôn Bậu, xã Tân Yên",
+        type: "Di tích cấp tỉnh",
+        note: "Đình làng Bùi thuộc thôn Bậu, xã Tân Yên, được xây dựng từ đời vua Lê Cảnh Hưng thứ 23, năm Nhâm Ngọ 1762. Đình thờ Cao Sơn - Quý Minh, những vị thần có công bảo quốc hộ dân. Năm 2010, Đình Bùi được UBND tỉnh công nhận là Di tích kiến trúc nghệ thuật cấp tỉnh.",
+        image: "images/dinhbui.jpg",
+        icon: "🛕",
+        lat: 21.396022640875398,
+        lng: 106.1475436899604
+      },
+      {
+        name: "Đền Quan",
+        place: "Đền Quan",
+        village: "Thôn Bùi, xã Tân Yên",
+        type: "Di tích cấp tỉnh",
+        note: "Đền Quan là trung tâm sinh hoạt văn hóa, tín ngưỡng của nhân dân thôn Bùi, xã Tân Yên. Đền thờ hai vị tướng thời Hùng Vương thứ 18 có công dẹp giặc, mang lại thái bình cho nhân dân, được tôn là Cao Sơn Đại Vương và Quý Minh Đại Vương.",
+        image: "images/denquan.jpg",
+        icon: "🛕",
+        lat: 21.39154187972324,
+        lng: 106.13839643512341
+      },
+      {
+        name: "Đình Hoãn",
+        place: "Đình Hoãn",
+        village: "Thôn Trong Giữa, xã Tân Yên",
+        type: "Di tích cấp tỉnh",
+        note: "Điều đặc biệt tại đình Hoãn là nơi đây còn bảo lưu được sắc phong niên hiệu Khải Định thứ 9, năm 1924 và trên các đầu cột, xà khắc chữ Nho ghi người cung tiến, giống với đình Nội gần kề.",
+        image: "images/dinhhoan.jpg",
+        icon: "🛕",
+        lat: 21.371209029355605,
+        lng: 106.15066144979305
+      },
+      {
+        name: "Lăng Quan Thái Bảo",
+        place: "Lăng Quan Thái Bảo",
+        village: "Thôn Um Ngò, xã Tân Yên",
+        type: "Di tích cấp tỉnh",
+        note: "Giá trị lịch sử, văn hóa của lăng được lưu tại những tấm bia đá dựng vào tháng 4 năm Giáp Ngọ, niên hiệu Cảnh Hưng thứ 35, tức năm 1774, bổ sung tư liệu lịch sử quý về cuộc đời, sự nghiệp và công đức của vị quan Thái bảo Nguyễn Giáp Sùng.",
+        image: "images/langquanthaibao.jpg",
+        icon: "🛕",
+        lat: 21.36073763710665,
+        lng: 106.15087597393331
+      },
+      {
+        name: "Đình Ngò",
+        place: "Đình Ngò",
+        village: "Thôn Um Ngò, xã Tân Yên",
+        type: "Di tích cấp tỉnh",
+        note: "Đình Ngò là địa điểm sinh hoạt văn hóa tín ngưỡng của nhân dân địa phương, gắn với truyền thống lịch sử, văn hóa trên địa bàn xã Tân Yên.",
+        image: "images/dinhngo.jpg",
+        icon: "🛕",
+        lat: 21.36073763710665,
+        lng: 106.15087597393331
+      },
+      {
+        name: "Đình Nguyễn",
+        place: "Đình Nguyễn",
+        village: "Thôn Nguyễn, xã Tân Yên",
+        type: "Di tích cấp tỉnh",
+        note: "Đình Nguyễn là di sản kiến trúc thời Lê Trung Hưng, thế kỷ 18, được trùng tu vào thế kỷ 19. Hiện đình còn lưu giữ nhiều di vật, cổ vật có niên đại thời Nguyễn có giá trị như bài vị, mâm bồng, hương án, cây nến, bát hương, ngai thờ. Đặc biệt, đình Nguyễn còn lưu giữ tấm bia đá ghi lại tên người công đức tu sửa niên hiệu Cảnh Hưng thứ 45, năm 1784.",
+        image: "images/dinhnguyen.jpg",
+        icon: "🛕",
+        lat: 21.34334026407275,
+        lng: 106.16295746938853
       }
     ];
 
     const map = L.map("map", {
-      scrollWheelZoom: true
-    }).setView([21.3852, 106.1203], 13);
+      scrollWheelZoom: true,
+      zoomControl: true
+    }).setView([21.371, 106.136], 12);
 
     L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
       attribution: "&copy; OpenStreetMap contributors &copy; CARTO",
@@ -759,7 +986,7 @@
           <b>Khu vực:</b> ${location.village}<br>
           <b>Loại hình:</b> ${location.type}<br>
           <b>Ghi chú:</b> ${location.note}<br>
-          <a class="btn" href="${directionLink(location.lat, location.lng)}" target="_blank">Chỉ đường</a>
+          <a class="btn" href="${directionLink(location.lat, location.lng)}" target="_blank">📍 Chỉ đường</a>
         </div>
       `;
     }
@@ -773,9 +1000,9 @@
             <div class="marker-label">${location.name}</div>
           </div>
         `,
-        iconSize: [170, 82],
-        iconAnchor: [85, 41],
-        popupAnchor: [0, -34]
+        iconSize: [160, 78],
+        iconAnchor: [80, 39],
+        popupAnchor: [0, -32]
       });
 
       const marker = L.marker([location.lat, location.lng], {
@@ -792,12 +1019,12 @@
     );
 
     map.fitBounds(bounds, {
-      padding: [60, 60]
+      padding: [40, 40]
     });
 
     function resetMap() {
       map.fitBounds(bounds, {
-        padding: [60, 60]
+        padding: [40, 40]
       });
     }
 
