@@ -6,32 +6,19 @@
 
   <title>Bản đồ di tích số xã Tân Yên</title>
   <meta name="description" content="Bản đồ di tích số xã Tân Yên hỗ trợ người dân và du khách tra cứu nhanh các địa danh, danh lam thắng cảnh, di tích, địa điểm tiêu biểu trên địa bàn xã." />
-
   <meta property="og:title" content="Bản đồ di tích số xã Tân Yên" />
   <meta property="og:description" content="Công trình thanh niên của Đoàn Thanh niên - Hội LHTN - Hội Đồng Đội xã Tân Yên." />
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" />
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap&subset=vietnamese" rel="stylesheet">
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body,
-    button,
-    input,
-    textarea,
-    select,
-    .leaflet-container,
-    .leaflet-popup-content {
+    body, button, input, textarea, select, .leaflet-container, .leaflet-popup-content {
       font-family: "Be Vietnam Pro", Arial, Helvetica, sans-serif;
     }
 
@@ -175,8 +162,7 @@
       margin-bottom: 16px;
     }
 
-    .intro-main,
-    .intro-side {
+    .intro-main, .intro-side {
       background: rgba(255,255,255,0.92);
       border: 1px solid #d6efff;
       border-radius: 18px;
@@ -244,9 +230,7 @@
       color: #27465c;
     }
 
-    .guide strong {
-      color: #006bc7;
-    }
+    .guide strong { color: #006bc7; }
 
     .legend {
       margin-top: 14px;
@@ -326,6 +310,14 @@
       cursor: pointer;
     }
 
+    .search-status {
+      margin: -6px 0 14px;
+      color: #005fb3;
+      font-size: 14px;
+      font-weight: 800;
+      line-height: 1.45;
+    }
+
     #map {
       width: 100%;
       height: 640px;
@@ -397,9 +389,7 @@
       transition: 0.3s ease;
     }
 
-    .card:hover .card-image {
-      transform: scale(1.04);
-    }
+    .card:hover .card-image { transform: scale(1.04); }
 
     .type-badge {
       position: absolute;
@@ -409,8 +399,10 @@
       padding: 7px 11px;
       border-radius: 999px;
       font-size: 13px;
-      font-weight: 700;
+      font-weight: 800;
       box-shadow: 0 5px 14px rgba(0,0,0,0.16);
+      line-height: 1.3;
+      max-width: calc(100% - 24px);
     }
 
     .card h3 {
@@ -420,14 +412,35 @@
       line-height: 1.35;
     }
 
-    .card p {
-      margin: 6px 0;
-      line-height: 1.5;
-      color: #314f63;
+    .tourism-title {
+      color: #7b1cff !important;
+      text-shadow: 0 1px 0 rgba(255,255,255,0.75);
     }
 
-    .card p strong {
+    .info-list {
+      margin-top: 8px;
+      border-top: 1px solid #e1f1ff;
+    }
+
+    .info-row {
+      display: grid;
+      grid-template-columns: 96px 1fr;
+      gap: 10px;
+      padding: 8px 0;
+      border-bottom: 1px solid #eef7ff;
+      align-items: start;
+    }
+
+    .info-label {
+      font-weight: 900;
       color: #173b55;
+      white-space: nowrap;
+    }
+
+    .info-value {
+      color: #314f63;
+      line-height: 1.58;
+      text-align: justify;
     }
 
     .btn {
@@ -453,13 +466,29 @@
       text-align: center;
       color: #456;
       font-size: 14px;
-      padding: 20px 14px;
+      padding: 20px 12px 8px;
       line-height: 1.6;
       border-top: 1px solid #d6efff;
     }
 
-    .footer strong {
+    .footer strong { color: #006bc7; }
+
+    .performer {
+      max-width: 760px;
+      margin: 18px auto 0;
+      padding: 14px 18px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #eaf7ff, #ffffff);
+      border: 1px solid #cdeeff;
+      box-shadow: 0 8px 22px rgba(0, 96, 180, 0.08);
+      color: #173b55;
+      font-weight: 700;
+      overflow-wrap: anywhere;
+    }
+
+    .performer span {
       color: #006bc7;
+      font-weight: 900;
     }
 
     .custom-marker {
@@ -505,21 +534,10 @@
       text-overflow: ellipsis;
     }
 
-    .special-national {
-      background: linear-gradient(135deg, #d60000, #ff9d00);
-    }
-
-    .national {
-      background: linear-gradient(135deg, #8b0000, #d40000);
-    }
-
-    .provincial {
-      background: linear-gradient(135deg, #007ee5, #00a6ff);
-    }
-
-    .highlight {
-      background: linear-gradient(135deg, #00a36c, #00c98b);
-    }
+    .special-national { background: linear-gradient(135deg, #d60000, #ff9d00); }
+    .national { background: linear-gradient(135deg, #8b0000, #d40000); }
+    .provincial { background: linear-gradient(135deg, #007ee5, #00a6ff); }
+    .highlight { background: linear-gradient(135deg, #00a36c, #00c98b); }
 
     .tourism-highlight {
       background: linear-gradient(135deg, #7b1cff, #ff4ecd);
@@ -527,24 +545,25 @@
     }
 
     .marker-icon.tourism-highlight {
-      width: 52px;
-      height: 52px;
-      font-size: 25px;
+      width: 54px;
+      height: 54px;
+      font-size: 26px;
       border: 4px solid #fff4b8;
+      box-shadow: 0 10px 22px rgba(123, 28, 255, 0.42);
     }
 
     .popup-box {
-      max-width: 260px;
+      max-width: 300px;
       line-height: 1.5;
       color: #173b55;
     }
 
     .popup-image {
-      width: 240px;
-      height: 145px;
+      width: 280px;
+      height: 158px;
       object-fit: cover;
       border-radius: 12px;
-      margin-bottom: 9px;
+      margin-bottom: 10px;
       display: block;
       background: #e8f5ff;
     }
@@ -552,197 +571,159 @@
     .popup-title {
       color: #006bc7;
       font-size: 17px;
-      margin-bottom: 7px;
+      margin-bottom: 8px;
       display: block;
       line-height: 1.35;
     }
+
+    .popup-title.tourism-title {
+      color: #7b1cff;
+      font-size: 18px;
+      font-weight: 900;
+    }
+
+    .popup-special-note {
+      margin: 8px 0 10px;
+      padding: 8px 10px;
+      border-radius: 12px;
+      background: #fff5ff;
+      border: 1px solid #f4c8ff;
+      color: #6c1bb0;
+      font-weight: 800;
+      line-height: 1.45;
+    }
+
+    .popup-info {
+      margin-top: 8px;
+      border-top: 1px solid #e1f1ff;
+    }
+
+    .popup-row {
+      display: grid;
+      grid-template-columns: 82px 1fr;
+      gap: 8px;
+      padding: 7px 0;
+      border-bottom: 1px solid #eef7ff;
+      align-items: start;
+    }
+
+    .popup-label {
+      font-weight: 900;
+      color: #173b55;
+      white-space: nowrap;
+    }
+
+    .popup-value {
+      color: #314f63;
+      line-height: 1.55;
+      text-align: left;
+    }
+
+    .popup-value.note-value { text-align: justify; }
 
     .leaflet-popup-content-wrapper {
       border-radius: 16px;
       box-shadow: 0 10px 28px rgba(0,0,0,0.22);
     }
 
-    .leaflet-popup-content {
-      margin: 13px;
-    }
+    .leaflet-popup-content { margin: 13px; }
 
     @media (max-width: 900px) {
-      .logo-row {
-        gap: 12px;
-      }
-
+      .logo-row { gap: 12px; }
       .logo-card {
         width: 76px;
         height: 76px;
         border-radius: 20px;
         padding: 8px;
       }
-
-      .title-area h1 {
-        font-size: 30px;
-      }
-
-      .badge {
-        font-size: 17px;
-      }
-
-      .intro-card {
-        grid-template-columns: 1fr;
-      }
+      .title-area h1 { font-size: 30px; }
+      .badge { font-size: 17px; }
+      .intro-card { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 768px) {
-      .hero {
-        padding: 16px 10px 20px;
-      }
-
-      .logo-row {
-        gap: 8px;
-        margin-bottom: 10px;
-      }
-
+      .hero { padding: 16px 10px 20px; }
+      .logo-row { gap: 8px; margin-bottom: 10px; }
       .logo-card {
         width: 58px;
         height: 58px;
         border-radius: 15px;
         padding: 6px;
       }
-
       .commune-name {
         font-size: 14px;
         padding: 6px 14px;
         margin-bottom: 9px;
       }
-
       .badge {
         font-size: 14px;
         padding: 8px 12px;
         margin-bottom: 9px;
       }
-
-      .title-area h1 {
-        font-size: 20px;
-        line-height: 1.28;
-      }
-
+      .title-area h1 { font-size: 20px; line-height: 1.28; }
       .election-banner {
         margin-top: 14px;
         font-size: 12px;
         padding: 10px;
         border-radius: 13px;
       }
-
-      .container {
-        padding: 14px 10px 22px;
-      }
-
-      .intro-main,
-      .intro-side,
-      .guide {
+      .container { padding: 14px 10px 22px; }
+      .intro-main, .intro-side, .guide {
         border-radius: 14px;
         padding: 14px;
       }
-
-      .intro-main h2 {
-        font-size: 18px;
-      }
-
-      .intro-main p {
-        font-size: 14px;
-        text-align: left;
-      }
-
-      .intro-side {
-        align-items: flex-start;
-      }
-
+      .intro-main h2 { font-size: 18px; }
+      .intro-main p { font-size: 14px; text-align: left; }
+      .intro-side { align-items: flex-start; }
       .intro-icon {
         width: 46px;
         height: 46px;
         min-width: 46px;
         font-size: 24px;
       }
-
-      .legend-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .legend-item {
-        font-size: 13px;
-      }
-
+      .legend-grid { grid-template-columns: 1fr; }
+      .legend-item { font-size: 13px; }
       .legend-icon {
         width: 30px;
         height: 30px;
         min-width: 30px;
         font-size: 15px;
       }
-
-      .search-row {
-        grid-template-columns: 1fr;
-        gap: 10px;
-      }
-
-      .search-box input {
-        font-size: 14px;
-        padding: 13px 14px;
-      }
-
-      .map-note {
-        padding: 12px 14px;
-        font-size: 14px;
-      }
-
+      .search-row { grid-template-columns: 1fr; gap: 10px; }
+      .search-box input { font-size: 14px; padding: 13px 14px; }
+      .map-note { padding: 12px 14px; font-size: 14px; }
+      .search-status { font-size: 13px; margin: -4px 0 12px; }
       #map {
         height: 520px;
         border-radius: 18px;
         border-width: 4px;
       }
-
       .section-title {
         flex-direction: column;
         align-items: flex-start;
       }
-
-      .section-title h2 {
-        font-size: 20px;
-      }
-
-      .list {
-        grid-template-columns: 1fr;
-        gap: 14px;
-      }
-
-      .card {
-        border-radius: 17px;
-        padding: 12px;
-      }
-
-      .card-image-wrap {
-        height: 185px;
-      }
-
-      .card h3 {
-        font-size: 18px;
-      }
-
-      .card p {
+      .section-title h2 { font-size: 20px; }
+      .list { grid-template-columns: 1fr; gap: 14px; }
+      .card { border-radius: 17px; padding: 12px; }
+      .card-image-wrap { height: 185px; }
+      .card h3 { font-size: 18px; }
+      .info-row {
+        grid-template-columns: 84px 1fr;
+        gap: 7px;
         font-size: 14px;
       }
-
+      .info-value { text-align: left; }
       .marker-icon {
         width: 40px;
         height: 40px;
         font-size: 19px;
         border-width: 3px;
       }
-
       .marker-icon.tourism-highlight {
-        width: 44px;
-        height: 44px;
-        font-size: 21px;
+        width: 46px;
+        height: 46px;
+        font-size: 22px;
       }
-
       .marker-label {
         max-width: 105px;
         font-size: 9.5px;
@@ -753,39 +734,26 @@
         background: #ffffff;
         border: 2px solid #0094ff;
       }
-
-      .popup-image {
-        width: 215px;
-        height: 125px;
-      }
-
-      .popup-box {
-        max-width: 230px;
+      .popup-image { width: 235px; height: 132px; }
+      .popup-box { max-width: 250px; font-size: 13px; }
+      .popup-row { grid-template-columns: 70px 1fr; gap: 6px; }
+      .popup-value.note-value { text-align: left; }
+      .performer {
         font-size: 13px;
+        padding: 12px;
+        border-radius: 14px;
       }
     }
 
     @media (max-width: 430px) {
-      .logo-card {
-        width: 50px;
-        height: 50px;
-      }
-
-      .title-area h1 {
-        font-size: 18px;
-      }
-
-      .badge {
-        font-size: 13px;
-      }
-
-      #map {
-        height: 490px;
-      }
-
-      .card-image-wrap {
-        height: 170px;
-      }
+      .logo-card { width: 50px; height: 50px; }
+      .title-area h1 { font-size: 18px; }
+      .badge { font-size: 13px; }
+      #map { height: 490px; }
+      .card-image-wrap { height: 170px; }
+      .info-row { grid-template-columns: 76px 1fr; }
+      .footer { font-size: 12.5px; }
+      .performer { font-size: 12.5px; }
     }
   </style>
 </head>
@@ -794,17 +762,9 @@
   <header class="hero">
     <div class="hero-inner">
       <div class="logo-row">
-        <div class="logo-card">
-          <img src="images/logo-doan-thanh-nien.png" alt="Logo Đoàn Thanh niên">
-        </div>
-
-        <div class="logo-card">
-          <img src="images/logo-hoi-lhtn-viet-nam.png" alt="Logo Hội Liên hiệp Thanh niên Việt Nam">
-        </div>
-
-        <div class="logo-card">
-          <img src="images/logo-hoi-dong-doi.png" alt="Logo Hội Đồng Đội">
-        </div>
+        <div class="logo-card"><img src="images/logo-doan-thanh-nien.png" alt="Logo Đoàn Thanh niên"></div>
+        <div class="logo-card"><img src="images/logo-hoi-lhtn-viet-nam.png" alt="Logo Hội Liên hiệp Thanh niên Việt Nam"></div>
+        <div class="logo-card"><img src="images/logo-hoi-dong-doi.png" alt="Logo Hội Đồng Đội"></div>
       </div>
 
       <div class="commune-name">Xã Tân Yên</div>
@@ -847,38 +807,21 @@
 
       <div class="legend">
         <div class="legend-title">Chú giải biểu tượng trên bản đồ:</div>
-
         <div class="legend-grid">
-          <div class="legend-item">
-            <span class="legend-icon special-national">⭐</span>
-            <span>Di tích cấp quốc gia đặc biệt: 02 di tích</span>
-          </div>
-
-          <div class="legend-item">
-            <span class="legend-icon national">🏛️</span>
-            <span>Di tích cấp quốc gia: 02 di tích</span>
-          </div>
-
-          <div class="legend-item">
-            <span class="legend-icon provincial">🛕</span>
-            <span>Di tích cấp tỉnh: 16 di tích</span>
-          </div>
-
-          <div class="legend-item">
-            <span class="legend-icon highlight">📍</span>
-            <span>Địa điểm tiêu biểu / danh lam thắng cảnh</span>
-          </div>
+          <div class="legend-item"><span class="legend-icon special-national">⭐</span><span>Di tích cấp quốc gia đặc biệt: 02 di tích</span></div>
+          <div class="legend-item"><span class="legend-icon national">🏛️</span><span>Di tích cấp quốc gia: 02 di tích</span></div>
+          <div class="legend-item"><span class="legend-icon provincial">🛕</span><span>Di tích cấp tỉnh: 16 di tích</span></div>
+          <div class="legend-item"><span class="legend-icon highlight">📍</span><span>Địa điểm tiêu biểu / danh lam thắng cảnh</span></div>
         </div>
       </div>
     </section>
 
     <div class="search-row">
-      <div class="search-box">
-        <input type="text" id="searchInput" placeholder="Nhập tên địa danh, khu vực hoặc địa điểm..." />
-      </div>
+      <div class="search-box"><input type="text" id="searchInput" placeholder="Nhập tên di tích, địa danh, loại di tích hoặc khu vực..." /></div>
       <button class="map-note" type="button" onclick="resetMap()">Xem toàn bản đồ</button>
     </div>
 
+    <div id="searchStatus" class="search-status"></div>
     <div id="map"></div>
 
     <section class="section-title">
@@ -891,6 +834,8 @@
     <footer class="footer">
       <strong>Công trình thanh niên “Bản đồ di tích số xã Tân Yên”</strong><br>
       Do Đoàn Thanh niên - Hội Liên hiệp Thanh niên Việt Nam - Hội Đồng Đội xã Tân Yên thực hiện.
+
+      <div class="performer">Người thực hiện: <span>Đồng chí Nguyễn Tuấn Hiệp - Phó Bí thư Đoàn xã Tân Yên</span></div>
     </footer>
   </main>
 
@@ -910,10 +855,10 @@
       },
       {
         name: "Chùa Phúc Sơn",
-        place: "Chùa Phúc Sơn",
+        place: "Chùa Phúc Sơn, Đình Ngô Xá",
         village: "Thôn Ngoài, xã Tân Yên",
-        type: "Di tích văn hóa cấp tỉnh, địa điểm du lịch tiêu biểu",
-        note: "Chùa Phúc Sơn là di tích văn hóa cấp tỉnh, đồng thời là địa điểm du lịch tiêu biểu trên địa bàn xã Tân Yên.",
+        type: "Di tích cấp tỉnh/Địa điểm du lịch, văn hóa trọng điểm",
+        note: "Chùa Phúc Sơn tọa lạc trên núi Phượng Hoàng, được xây dựng vào năm 1680 - thời Lê Trung Hưng, thế kỷ XVI. Trong thời kỳ kháng chiến chống Pháp và Mỹ, chùa là nơi bàn thảo kế hoạch du kích, làm trạm xá, nơi trú ẩn tạm thời của quân và dân ta. Đặc biệt Bảo tháp cao 13 tầng bên trong có Phật ngọc quý hiếm. Đây là tượng ngọc Phật hoàng Trần Nhân Tông độc đáo nhất Việt Nam. Tượng được tạo tác từ khối đá ngọc bích có nguồn gốc ở dãy núi Cassiar, Canada, được rước về ngự tại tháp chùa Phúc Sơn.",
         image: "images/chua-phuc-son.jpg",
         lat: 21.383990768365607,
         lng: 106.11133442207652
@@ -922,8 +867,8 @@
         name: "Đình Cao Thượng",
         place: "Đình Cao Thượng",
         village: "Thôn Đình, xã Tân Yên",
-        type: "Di tích cấp quốc gia",
-        note: "Thế kỷ XVII; thờ Cao Sơn - Quý Minh. Đề Thám đã cho lập căn cứ ở trên núi Yên Ngựa, khu vực đình Cao Thượng, và thường tổ chức hội họp, lui tới đình.",
+        type: "Di tích cấp quốc gia đặc biệt",
+        note: "Thế kỷ XVII; thờ Cao Sơn - Quý Minh. Đề Thám đã cho lập căn cứ ở trên núi Yên Ngựa, khu vực đình Cao Thượng và thường tổ chức hội họp, lui tới đình.",
         image: "images/dinh-caothuong.jpg",
         lat: 21.379743995148612,
         lng: 106.135674338706
@@ -953,57 +898,57 @@
         place: "Lăng quận công Giáp Đăng Luân",
         village: "Thôn Ngọc Trai, xã Tân Yên",
         type: "Di tích cấp quốc gia",
-        note: "Nơi an nghỉ của Giáp Đăng Luân, một võ quan thời Lê Trung Hưng, làm việc dưới triều Lê - Trịnh. Công trình được xây dựng trong khoảng 1728-1733, khi ông còn sống.",
+        note: "Nơi an nghỉ của Giáp Đăng Luân, một võ quan thời Lê Trung Hưng, làm việc dưới triều Lê - Trịnh; công trình được xây dựng trong khoảng 1728 - 1733, khi ông còn sống.",
         image: "images/giap-dang-luan.jpg",
         lat: 21.33655044334248,
         lng: 106.1434460573037
       },
       {
-        name: "Chùa Kim Sơn",
-        place: "Chùa Kim Sơn",
+        name: "Khu di tích Chùa Kim Sơn, Đình Giã",
+        place: "Chùa Kim Sơn, Đình Giã",
         village: "Thôn Đình Giã, xã Tân Yên",
         type: "Di tích cấp tỉnh",
-        note: "Chùa Giã, chùa Kim Sơn tự, được xây dựng từ thế kỷ 18 thời Lê Trung Hưng. Đây là trung tâm sinh hoạt văn hóa tín ngưỡng, tôn giáo chung của nhân dân địa phương. Đình, chùa Giã hiện còn lưu giữ một số hiện vật có giá trị lịch sử như bộ bát bửu, nhang án, sập gỗ, ngai thờ, bát hương, hệ thống tượng Phật.",
+        note: "Chùa Giã, chùa Kim Sơn tự, được xây dựng từ thế kỷ 18 thời Lê Trung Hưng. Đây là trung tâm sinh hoạt văn hóa tín ngưỡng, tôn giáo chung của nhân dân địa phương. Đình, chùa Giã hiện vẫn còn lưu giữ được một số hiện vật có giá trị lịch sử như bộ bát bửu, nhang án, sập gỗ, ngai thờ, bát hương, hệ thống tượng Phật. Đình, chùa Giã đã được xếp hạng di tích lịch sử văn hóa cấp tỉnh.",
         image: "images/chuakimson.jpg",
-        lat: 21.39323678615806,
-        lng: 106.12334610167864
+        lat: 21.393048706581276,  
+        lng: 106.12328917739795
       },
       {
         name: "Chùa Phán Thú",
         place: "Chùa Phán Thú",
         village: "Thôn Um Ngò, xã Tân Yên",
         type: "Di tích cấp tỉnh",
-        note: "Chùa Phán Thú tên chữ là Long Sơn Tự, xưa thuộc Tổng Bảo Lộc Sơn, huyện Yên Thế và nay thuộc xã Tân Yên. Trong chùa còn những hiện vật cổ quý như hệ thống tượng Phật gỗ, 2 biển gỗ, bia hậu Phật dựng năm Bảo Đại thứ 4, năm 1929.",
+        note: "Chùa Phán Thú tên chữ là Long Sơn Tự, xưa thuộc Tổng Bảo Lộc Sơn, huyện Yên Thế và nay thuộc xã Tân Yên. Trong chùa còn những hiện vật cổ quý như hệ thống tượng Phật gỗ, 2 biển gỗ đề hữu biển thông tri niên hiệu Cảnh Hưng thứ 14, năm 1784; bia hậu Phật dựng năm Bảo Đại thứ 4, năm 1929. Chùa Phán Thú là ngôi chùa duy nhất trong các ngôi chùa của Tân Yên hiện nay có 2 pho tượng đá. Theo những cụ cao niên trong làng, 2 tượng là của 2 phụ nữ đã hiến đất và cung tiến tiền vàng giúp dân xây chùa.",
         image: "images/chuaphanthu.jpg",
-        lat: 21.35470894562282,
-        lng: 106.15187138424616
+        lat: 21.34966086654221,
+        lng: 106.154375904431
       },
       {
         name: "Chùa Non Tiên",
         place: "Chùa Non Tiên",
         village: "Thôn Ngoài Hạ, xã Tân Yên",
         type: "Di tích cấp tỉnh",
-        note: "Chùa Non Tiên là địa điểm sinh hoạt tín ngưỡng tâm linh linh thiêng của nhân dân trong vùng. Năm 2010, chùa được Chủ tịch UBND tỉnh công nhận là di tích lịch sử văn hóa cấp tỉnh.",
+        note: "Chùa Non Tiên được xây dựng từ lâu đời, mang phong cách thời Nguyễn, thế kỷ XIX. Đây là công trình văn hóa tôn giáo của nhân dân làng Hạ, xã Cương Lập, tổng Mục Sơn xưa, ngày nay là thôn Hạ Trong và thôn Hạ Ngoài, xã Cao Thượng, huyện Tân Yên; lưu giữ hệ thống kiến trúc, các cổ vật từ xa xưa như bát hương cổ, đồ thờ bằng gỗ và 17 pho tượng Phật quý.",
         image: "images/chuanontien.jpg",
-        lat: 21.378357145373002,
-        lng: 106.15289363807464
+        lat: 21.378840660552264,
+        lng: 106.15400281013332
       },
       {
         name: "Chùa Cổ Am",
         place: "Chùa Cổ Am",
         village: "Thôn Tân Lập Cao Thượng, xã Tân Yên",
         type: "Di tích cấp tỉnh",
-        note: "Đây là một ngôi chùa cổ, di tích lịch sử - văn hóa thờ Phật đã được xếp hạng cấp tỉnh. Chùa nổi tiếng linh thiêng và là điểm sinh hoạt văn hóa tâm linh của người dân địa phương.",
+        note: "Trong giai đoạn tiền khởi nghĩa năm 1944, chùa Cổ Am là địa điểm để các lãnh đạo tỉnh, lãnh đạo địa phương thường xuyên lui tới tuyên truyền, họp bàn cách mạng như bà Hà Thị Quế, Hoàng Quốc Việt, Nguyễn Văn Thương.",
         image: "images/chuacoam.jpg",
-        lat: 21.39727837762234,
-        lng: 106.14049910021247
+        lat: 21.401836764077338,
+        lng: 106.13727881349378
       },
       {
         name: "Đền Quận Công Dương Hùng Lượng",
         place: "Đền Quận Công Dương Hùng Lượng",
         village: "Thôn Dinh Thẳm, xã Tân Yên",
         type: "Di tích cấp tỉnh",
-        note: "Dinh vốn là làng cổ, hình thành cách đây chừng 5 thế kỷ. Tại đây có đền thờ Nhất phẩm quận công Dương Hùng Lượng thời nhà Mạc. Vào cuối thế kỷ 19 đầu thế kỷ 20, nhiều tướng lĩnh con em làng Dinh đã gia nhập nghĩa quân Hoàng Hoa Thám, đánh giặc Pháp trên núi rừng Yên Thế.",
+        note: "Dinh vốn là làng cổ, hình thành cách đây chừng 5 thế kỷ. Tại đây có đền thờ Nhất phẩm quận công Dương Hùng Lượng thời nhà Mạc, năm 1530. Đền thờ đã được Nhà nước công nhận và xếp hạng Di tích lịch sử văn hóa cấp tỉnh. Vào thế kỷ 16, nhân dân làng Dinh đã đoàn kết một lòng anh dũng chiến đấu đánh tan đội quân cướp bóc của giặc Tàu với trận Ma Màng lịch sử. Cuối thế kỷ 19 đầu thế kỷ 20, các tướng lĩnh con em làng Dinh, con em họ Dương tiêu biểu như Đề Hùng, Đề Sử, Cai Cường, Cai Cán, Chỉ Binh đã gia nhập nghĩa quân Hoàng Hoa Thám, đánh giặc Pháp ngót 30 năm trên núi rừng Yên Thế.",
         image: "images/duonghungluong.jpg",
         lat: 21.396609599851004,
         lng: 106.10027372283005
@@ -1013,40 +958,50 @@
         place: "Đình Bùi",
         village: "Thôn Bậu, xã Tân Yên",
         type: "Di tích cấp tỉnh",
-        note: "Đình làng Bùi thuộc thôn Bậu, xã Tân Yên, được xây dựng từ đời vua Lê Cảnh Hưng thứ 23, năm Nhâm Ngọ 1762. Đình thờ Cao Sơn - Quý Minh, những vị thần có công bảo quốc hộ dân. Năm 2010, Đình Bùi được UBND tỉnh công nhận là Di tích kiến trúc nghệ thuật cấp tỉnh.",
+        note: "Đình làng Bùi thuộc thôn Bậu, xã Tân Yên, được xây dựng từ đời vua Lê Cảnh Hưng thứ 23, năm Nhâm Ngọ 1762. Trải qua nhiều biến cố thăng trầm của lịch sử, đình đã 5 lần trùng tu tôn tạo, gìn giữ những giá trị kiến trúc nghệ thuật đặc sắc. Đình thờ Cao Sơn - Quý Minh, những vị thần có công bảo quốc hộ dân. Năm 2010, Đình Bùi được UBND tỉnh công nhận là Di tích kiến trúc nghệ thuật cấp tỉnh, góp phần khẳng định giá trị văn hóa, lịch sử của địa phương.",
         image: "images/dinhbui.jpg",
         lat: 21.396022640875398,
         lng: 106.1475436899604
+      },
+      {
+        name: "Đình Tranh",
+        place: "Đình Tranh",
+        village: "Thôn Tân Tiến, xã Tân Yên",
+        type: "Di tích cấp tỉnh",
+        note: "Đình Tranh có lịch sử từ lâu đời và được tu bổ, tôn tạo lại vào thời Nguyễn, thế kỷ XIX. Hiện đình còn lưu giữ được nhiều di vật, cổ vật có giá trị nghiên cứu lịch sử, khoa học như 05 ngai thờ và bài vị, 01 sắc phong phục chế, 01 đòn sắc, đòn kiệu. Đây là căn cứ điểm quan trọng trong thời kỳ chống giặc Tàu giai đoạn 1864 - 1883 và khởi nghĩa Yên Thế giai đoạn 1884 - 1913.",
+        image: "images/dinhtranh.jpg",
+        lat: 21.380805775901745,
+        lng: 106.13910745767082
       },
       {
         name: "Đền Quan",
         place: "Đền Quan",
         village: "Thôn Bùi, xã Tân Yên",
         type: "Di tích cấp tỉnh",
-        note: "Đền Quan là trung tâm sinh hoạt văn hóa, tín ngưỡng của nhân dân thôn Bùi, xã Tân Yên. Đền thờ hai vị tướng thời Hùng Vương thứ 18 có công dẹp giặc, mang lại thái bình cho nhân dân, được tôn là Cao Sơn Đại Vương và Quý Minh Đại Vương.",
+        note: "Đền Quan là trung tâm sinh hoạt văn hóa, tín ngưỡng của nhân dân thôn Bùi, xã Tân Yên. Đền thờ hai vị tướng thời Hùng Vương thứ 18 có công dẹp giặc, mang lại thái bình cho nhân dân, được tôn là Cao Sơn Đại Vương và Quý Minh Đại Vương. Theo các tư liệu lịch sử, trước đây nhiều làng vùng Bắc Bộ thờ hai vị thần này và được các triều đại phong kiến ban sắc phong.",
         image: "images/denquan.jpg",
-        lat: 21.39154187972324,
-        lng: 106.13839643512341
+        lat: 21.389294802716954,
+        lng: 106.13923281349378
       },
       {
         name: "Đình Hoãn",
         place: "Đình Hoãn",
         village: "Thôn Trong Giữa, xã Tân Yên",
         type: "Di tích cấp tỉnh",
-        note: "Điều đặc biệt tại đình Hoãn là nơi đây còn bảo lưu được sắc phong niên hiệu Khải Định thứ 9, năm 1924 và trên các đầu cột, xà khắc chữ Nho ghi người cung tiến, giống với đình Nội gần kề.",
+        note: "Điều đặc biệt tại đình Hoãn là tại đây còn bảo lưu được sắc phong niên hiệu Khải Định thứ 9, năm 1924 và trên các đầu cột, xà khắc chữ Nho ghi người cung tiến, giống với đình Nội gần kề ngay đó.",
         image: "images/dinhhoan.jpg",
-        lat: 21.371209029355605,
-        lng: 106.15066144979305
+        lat: 21.374556348087253,
+        lng: 106.14420298227012
       },
       {
         name: "Lăng Quan Thái Bảo",
         place: "Lăng Quan Thái Bảo",
         village: "Thôn Um Ngò, xã Tân Yên",
         type: "Di tích cấp tỉnh",
-        note: "Giá trị lịch sử, văn hóa của lăng được lưu tại những tấm bia đá dựng vào tháng 4 năm Giáp Ngọ, niên hiệu Cảnh Hưng thứ 35, tức năm 1774, bổ sung tư liệu lịch sử quý về cuộc đời, sự nghiệp và công đức của vị quan Thái bảo Nguyễn Giáp Sùng.",
+        note: "Giá trị lịch sử, văn hóa của Lăng được lưu tại những tấm bia đá được dựng vào tháng 4 năm Giáp Ngọ, niên hiệu Cảnh Hưng thứ 35, tức năm 1774, bổ sung những tư liệu lịch sử quý về cuộc đời, sự nghiệp và công đức của vị quan Thái bảo Nguyễn Giáp Sùng, tức Giáp Trinh Tường.",
         image: "images/langquanthaibao.jpg",
-        lat: 21.36073763710665,
-        lng: 106.15087597393331
+        lat: 21.349595785149194,
+        lng: 106.15045993807465
       },
       {
         name: "Đình Ngò",
@@ -1055,8 +1010,8 @@
         type: "Di tích cấp tỉnh",
         note: "Đình Ngò là địa điểm sinh hoạt văn hóa tín ngưỡng của nhân dân địa phương, gắn với truyền thống lịch sử, văn hóa trên địa bàn xã Tân Yên.",
         image: "images/dinhngo.jpg",
-        lat: 21.36073763710665,
-        lng: 106.15087597393331
+        lat: 21.354779598846488,
+        lng: 106.15204642459874
       },
       {
         name: "Đình Nguyễn",
@@ -1065,8 +1020,18 @@
         type: "Di tích cấp tỉnh",
         note: "Đình Nguyễn là di sản kiến trúc thời Lê Trung Hưng, thế kỷ 18, được trùng tu vào thế kỷ 19. Hiện đình còn lưu giữ nhiều di vật, cổ vật có niên đại thời Nguyễn có giá trị như bài vị, mâm bồng, hương án, cây nến, bát hương, ngai thờ. Đặc biệt, đình Nguyễn còn lưu giữ tấm bia đá ghi lại tên người công đức tu sửa niên hiệu Cảnh Hưng thứ 45, năm 1784.",
         image: "images/dinhnguyen.jpg",
-        lat: 21.34334026407275,
-        lng: 106.16295746938853
+        lat: 21.343053199860034,
+        lng: 106.16294974784078
+      },
+      {
+        name: "Đình Kim Tràng",
+        place: "Đình Kim Tràng",
+        village: "Thôn Kim Tràng, xã Tân Yên",
+        type: "Di tích cấp tỉnh",
+        note: "Đình Kim Tràng xưa được nhân dân Hương công xây dựng với quy mô đồ sộ cùng thời gian với chùa Kim Tràng vào thế kỷ XVIII, thờ Thành Hoàng là Cao Sơn - Quý Minh Đại Vương, là hai vị tướng dưới thời vua Hùng Duệ Vương, đã có công dẹp giặc Thục ở thế kỷ III trước Công nguyên, đem lại cuộc sống ấm no, thái bình cho muôn dân.",
+        image: "images/dinhkimtrang.png",
+        lat: 21.341956031653385,
+        lng: 106.14011738063988
       }
     ];
 
@@ -1086,43 +1051,28 @@
     function getCategoryInfo(type) {
       const normalizedType = type.toLowerCase();
 
-      if (normalizedType.includes("du lịch tiêu biểu")) {
+      if (normalizedType.includes("du lịch") || normalizedType.includes("văn hóa trọng điểm")) {
         return {
           icon: "🌟",
           className: "tourism-highlight",
-          label: "Di tích văn hóa cấp tỉnh, địa điểm du lịch tiêu biểu"
+          label: "Di tích cấp tỉnh/Địa điểm du lịch, văn hóa trọng điểm",
+          isTourismHighlight: true
         };
       }
 
       if (normalizedType.includes("quốc gia đặc biệt")) {
-        return {
-          icon: "⭐",
-          className: "special-national",
-          label: "Di tích cấp quốc gia đặc biệt"
-        };
+        return { icon: "⭐", className: "special-national", label: "Di tích cấp quốc gia đặc biệt", isTourismHighlight: false };
       }
 
       if (normalizedType.includes("quốc gia")) {
-        return {
-          icon: "🏛️",
-          className: "national",
-          label: "Di tích cấp quốc gia"
-        };
+        return { icon: "🏛️", className: "national", label: "Di tích cấp quốc gia", isTourismHighlight: false };
       }
 
       if (normalizedType.includes("cấp tỉnh")) {
-        return {
-          icon: "🛕",
-          className: "provincial",
-          label: "Di tích cấp tỉnh"
-        };
+        return { icon: "🛕", className: "provincial", label: "Di tích cấp tỉnh", isTourismHighlight: false };
       }
 
-      return {
-        icon: "📍",
-        className: "highlight",
-        label: "Địa điểm tiêu biểu / danh lam thắng cảnh"
-      };
+      return { icon: "📍", className: "highlight", label: "Địa điểm tiêu biểu / danh lam thắng cảnh", isTourismHighlight: false };
     }
 
     function directionLink(lat, lng) {
@@ -1131,16 +1081,27 @@
 
     function createPopup(location) {
       const category = getCategoryInfo(location.type);
+      const specialNotice = category.isTourismHighlight
+        ? `<div class="popup-special-note">🌟 Điểm di tích, du lịch và văn hóa trọng điểm của xã Tân Yên</div>`
+        : "";
 
       return `
         <div class="popup-box">
           <img class="popup-image" src="${location.image}" alt="${location.name}" onerror="this.style.display='none'">
-          <span class="popup-title"><strong>${category.icon} ${location.name}</strong></span>
-          <b>Địa điểm:</b> ${location.place}<br>
-          <b>Khu vực:</b> ${location.village}<br>
-          <b>Phân loại:</b> ${category.label}<br>
-          <b>Loại hình:</b> ${location.type}<br>
-          <b>Ghi chú:</b> ${location.note}<br>
+          <span class="popup-title ${category.isTourismHighlight ? "tourism-title" : ""}">
+            <strong>${category.icon} ${location.name}</strong>
+          </span>
+
+          ${specialNotice}
+
+          <div class="popup-info">
+            <div class="popup-row"><div class="popup-label">Địa điểm</div><div class="popup-value">${location.place}</div></div>
+            <div class="popup-row"><div class="popup-label">Khu vực</div><div class="popup-value">${location.village}</div></div>
+            <div class="popup-row"><div class="popup-label">Phân loại</div><div class="popup-value">${category.label}</div></div>
+            <div class="popup-row"><div class="popup-label">Loại hình</div><div class="popup-value">${location.type}</div></div>
+            <div class="popup-row"><div class="popup-label">Ghi chú</div><div class="popup-value note-value">${location.note}</div></div>
+          </div>
+
           <a class="btn" href="${directionLink(location.lat, location.lng)}" target="_blank">📍 Chỉ đường</a>
         </div>
       `;
@@ -1162,27 +1123,25 @@
         popupAnchor: [0, -32]
       });
 
-      const marker = L.marker([location.lat, location.lng], {
-        icon: customIcon
-      })
+      const marker = L.marker([location.lat, location.lng], { icon: customIcon })
         .addTo(map)
         .bindPopup(createPopup(location));
 
       markers.push(marker);
     });
 
-    const bounds = L.latLngBounds(
-      locations.map(location => [location.lat, location.lng])
-    );
-
-    map.fitBounds(bounds, {
-      padding: [40, 40]
-    });
+    const bounds = L.latLngBounds(locations.map(location => [location.lat, location.lng]));
+    map.fitBounds(bounds, { padding: [40, 40] });
 
     function resetMap() {
-      map.fitBounds(bounds, {
-        padding: [40, 40]
-      });
+      map.fitBounds(bounds, { padding: [40, 40] });
+
+      const searchInput = document.getElementById("searchInput");
+      const searchStatus = document.getElementById("searchStatus");
+
+      searchInput.value = "";
+      searchStatus.textContent = "";
+      renderList(locations);
     }
 
     function renderList(data) {
@@ -1204,11 +1163,16 @@
             <img class="card-image" src="${location.image}" alt="${location.name}" onerror="this.style.display='none'">
             <div class="type-badge ${category.className}">${category.label}</div>
           </div>
-          <h3>${category.icon} ${location.name}</h3>
-          <p><strong>Địa điểm:</strong> ${location.place}</p>
-          <p><strong>Khu vực:</strong> ${location.village}</p>
-          <p><strong>Loại hình:</strong> ${location.type}</p>
-          <p><strong>Ghi chú:</strong> ${location.note}</p>
+
+          <h3 class="${category.isTourismHighlight ? "tourism-title" : ""}">${category.icon} ${location.name}</h3>
+
+          <div class="info-list">
+            <div class="info-row"><div class="info-label">Địa điểm</div><div class="info-value">${location.place}</div></div>
+            <div class="info-row"><div class="info-label">Khu vực</div><div class="info-value">${location.village}</div></div>
+            <div class="info-row"><div class="info-label">Loại hình</div><div class="info-value">${location.type}</div></div>
+            <div class="info-row"><div class="info-label">Ghi chú</div><div class="info-value">${location.note}</div></div>
+          </div>
+
           <a class="btn" href="${directionLink(location.lat, location.lng)}" target="_blank" onclick="event.stopPropagation()">📍 Chỉ đường</a>
         `;
 
@@ -1217,11 +1181,7 @@
           const index = locations.indexOf(location);
           markers[index].openPopup();
 
-          const mapElement = document.getElementById("map");
-          mapElement.scrollIntoView({
-            behavior: "smooth",
-            block: "center"
-          });
+          document.getElementById("map").scrollIntoView({ behavior: "smooth", block: "center" });
         });
 
         list.appendChild(card);
@@ -1230,6 +1190,14 @@
 
     document.getElementById("searchInput").addEventListener("input", function () {
       const keyword = this.value.toLowerCase().trim();
+      const searchStatus = document.getElementById("searchStatus");
+
+      if (keyword === "") {
+        renderList(locations);
+        resetMap();
+        searchStatus.textContent = "";
+        return;
+      }
 
       const filtered = locations.filter(item =>
         item.name.toLowerCase().includes(keyword) ||
@@ -1241,10 +1209,23 @@
 
       renderList(filtered);
 
+      if (filtered.length === 0) {
+        searchStatus.textContent = "Không tìm thấy kết quả phù hợp.";
+        return;
+      }
+
+      searchStatus.textContent = `Tìm thấy ${filtered.length} kết quả phù hợp. Bấm vào từng thẻ bên dưới để xem chi tiết trên bản đồ.`;
+
       if (filtered.length === 1) {
-        map.setView([filtered[0].lat, filtered[0].lng], 16);
-        const index = locations.indexOf(filtered[0]);
-        markers[index].openPopup();
+        const onlyResult = filtered[0];
+        const index = locations.indexOf(onlyResult);
+        map.setView([onlyResult.lat, onlyResult.lng], 17);
+        setTimeout(() => markers[index].openPopup(), 300);
+      }
+
+      if (filtered.length > 1) {
+        const filteredBounds = L.latLngBounds(filtered.map(item => [item.lat, item.lng]));
+        map.fitBounds(filteredBounds, { padding: [50, 50] });
       }
     });
 
