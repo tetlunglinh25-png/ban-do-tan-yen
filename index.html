@@ -539,6 +539,26 @@
     .provincial { background: linear-gradient(135deg, #007ee5, #00a6ff); }
     .highlight { background: linear-gradient(135deg, #00a36c, #00c98b); }
 
+    .memorial-highlight {
+      background: linear-gradient(135deg, #c1121f, #f77f00);
+      box-shadow: 0 8px 20px rgba(193, 18, 31, 0.38);
+    }
+
+    .marker-icon.memorial-highlight {
+      width: 56px;
+      height: 56px;
+      font-size: 27px;
+      border: 4px solid #fff4b8;
+      box-shadow: 0 10px 24px rgba(193, 18, 31, 0.45);
+      animation: pulseMemorial 1.8s infinite;
+    }
+
+    @keyframes pulseMemorial {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+      100% { transform: scale(1); }
+    }
+
     .tourism-highlight {
       background: linear-gradient(135deg, #7b1cff, #ff4ecd);
       box-shadow: 0 7px 18px rgba(123, 28, 255, 0.32);
@@ -811,6 +831,7 @@
           <div class="legend-item"><span class="legend-icon special-national">⭐</span><span>Di tích cấp quốc gia đặc biệt: 02 di tích</span></div>
           <div class="legend-item"><span class="legend-icon national">🏛️</span><span>Di tích cấp quốc gia: 02 di tích</span></div>
           <div class="legend-item"><span class="legend-icon provincial">🛕</span><span>Di tích cấp tỉnh: 16 di tích</span></div>
+          <div class="legend-item"><span class="legend-icon memorial-highlight">🕯️</span><span>Đài tưởng niệm anh hùng liệt sĩ</span></div>
           <div class="legend-item"><span class="legend-icon highlight">📍</span><span>Địa điểm tiêu biểu / danh lam thắng cảnh</span></div>
         </div>
       </div>
@@ -832,9 +853,10 @@
     <div class="list" id="locationList"></div>
 
     <footer class="footer">
-      <strong>Công trình thanh niên “Bản đồ di tích số xã Tân Yên”</strong>
-<div class="performer">Chỉ đạo nội dung: <span>Đồng chí Nguyễn Thị Yến- Đảng ủy viên, Phó chủ tịch UBMTTQ, Bí thư đoàn xã Tân Yên</span></div>
-      <div class="performer">Người thực hiện: <span>Đồng chí Nguyễn Tuấn Hiệp - Phó Bí thư Đoàn xã Tân Yên, Bí thư Chi đoàn Công an xã Tân Yên</span></div>
+      <strong>Công trình thanh niên “Bản đồ di tích số xã Tân Yên”</strong><br>
+      Do Đoàn Thanh niên - Hội Liên hiệp Thanh niên Việt Nam - Hội Đồng Đội xã Tân Yên thực hiện.
+
+      <div class="performer">Người thực hiện: <span>Đồng chí Nguyễn Tuấn Hiệp - Phó Bí thư Đoàn xã Tân Yên</span></div>
     </footer>
   </main>
 
@@ -847,7 +869,7 @@
         place: "Quảng trường Lương Văn Nắm",
         village: "Trung tâm xã Tân Yên",
         type: "Địa điểm tiêu biểu",
-        note: "Trung tâm Hội nghị được thiết kế hiện đại với hội trường gần 500 chỗ, tích hợp hệ thống phòng họp, thư viện, phòng chức năng đạt chuẩn, phục vụ hiệu quả cho các sự kiện chính trị, hành chính, văn hóa lớn trên địa bàn. Quảng trường Lương Văn Nắm rộng 2,65 ha, là không gian sinh hoạt cộng đồng gắn với giáo dục truyền thống lịch sử mang tên người anh hùng đã khởi nguồn cuộc khởi nghĩa Yên Thế. Đây sẽ là địa chỉ đỏ trong hành trình tri ân và tiếp nối truyền thống của các thế hệ hôm nay và mai sau",
+        note: "Nơi diễn ra các hoạt động trung tâm của xã Tân Yên.",
         image: "images/quang-truong-luong-van-nam.jpg",
         lat: 21.386421332205895,
         lng: 106.12936931845796
@@ -909,8 +931,8 @@
         type: "Di tích cấp tỉnh",
         note: "Chùa Giã, chùa Kim Sơn tự, được xây dựng từ thế kỷ 18 thời Lê Trung Hưng. Đây là trung tâm sinh hoạt văn hóa tín ngưỡng, tôn giáo chung của nhân dân địa phương. Đình, chùa Giã hiện vẫn còn lưu giữ được một số hiện vật có giá trị lịch sử như bộ bát bửu, nhang án, sập gỗ, ngai thờ, bát hương, hệ thống tượng Phật. Đình, chùa Giã đã được xếp hạng di tích lịch sử văn hóa cấp tỉnh.",
         image: "images/chuakimson.jpg",
-        lat: 21.393048706581276,  
-        lng: 106.12328917739795
+        lat: 21.380646734269295,
+        lng: 106.13901429719874
       },
       {
         name: "Chùa Phán Thú",
@@ -1031,6 +1053,16 @@
         image: "images/dinhkimtrang.png",
         lat: 21.341956031653385,
         lng: 106.14011738063988
+      },
+      {
+        name: "Đài tưởng niệm anh hùng liệt sĩ xã Tân Yên",
+        place: "Trung tâm xã Tân Yên",
+        village: "Trung tâm xã Tân Yên",
+        type: "Đài tưởng niệm anh hùng liệt sĩ, địa điểm tiêu biểu",
+        note: "Đài tưởng niệm anh hùng liệt sĩ xã Tân Yên tọa lạc tại khu vực núi Mấy, xã Tân Yên, có diện tích hơn 8.000 m², được khánh thành ngày 27/7/2019. Công trình là nơi thờ cúng, tưởng nhớ hơn 2.700 người con Tân Yên đã anh dũng hy sinh trong các cuộc kháng chiến và bảo vệ Tổ quốc. Đền được xây dựng theo kiến trúc truyền thống, gồm đền thờ, nhà treo chuông, cổng tam quan và các hạng mục phụ trợ. Đây là địa chỉ văn hóa - tâm linh quan trọng, thể hiện đạo lý “Uống nước nhớ nguồn” của Đảng bộ, chính quyền và nhân dân Tân Yên.",
+        image: "images/dai-tuong-niem.png",
+        lat: 21.387398245031175,
+        lng: 106.1281659443199
       }
     ];
 
@@ -1049,6 +1081,15 @@
 
     function getCategoryInfo(type) {
       const normalizedType = type.toLowerCase();
+
+      if (normalizedType.includes("đài tưởng niệm") || normalizedType.includes("anh hùng liệt sĩ")) {
+        return {
+          icon: "🕯️",
+          className: "memorial-highlight",
+          label: "Đài tưởng niệm anh hùng liệt sĩ",
+          isTourismHighlight: false
+        };
+      }
 
       if (normalizedType.includes("du lịch") || normalizedType.includes("văn hóa trọng điểm")) {
         return {
@@ -1122,7 +1163,10 @@
         popupAnchor: [0, -32]
       });
 
-      const marker = L.marker([location.lat, location.lng], { icon: customIcon })
+      const marker = L.marker([location.lat, location.lng], {
+          icon: customIcon,
+          zIndexOffset: category.className === "memorial-highlight" ? 2000 : 0
+        })
         .addTo(map)
         .bindPopup(createPopup(location));
 
