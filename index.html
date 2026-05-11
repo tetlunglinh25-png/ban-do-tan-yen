@@ -935,6 +935,195 @@
       }
     }
 
+
+    /* Căn chỉnh lại toàn bộ ô thông tin: viền đều, nhãn và nội dung thẳng hàng */
+    .info-list,
+    .popup-info {
+      margin-top: 10px;
+      display: block !important;
+      border: 1px solid #dcefff;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #ffffff;
+    }
+
+    .info-row,
+    .popup-row {
+      display: flex !important;
+      grid-template-columns: none !important;
+      align-items: stretch !important;
+      gap: 0 !important;
+      padding: 0 !important;
+      border-bottom: 1px solid #e5f3ff;
+      background: #fbfeff;
+      min-height: 42px;
+    }
+
+    .info-row:last-child,
+    .popup-row:last-child {
+      border-bottom: none;
+    }
+
+    .info-label,
+    .popup-label {
+      flex: 0 0 96px !important;
+      min-width: 96px;
+      min-height: auto !important;
+      padding: 10px 10px !important;
+      border: none !important;
+      border-right: 1px solid #e5f3ff !important;
+      border-radius: 0 !important;
+      background: linear-gradient(135deg, #eef8ff, #ffffff) !important;
+      color: #173b55;
+      font-weight: 900;
+      line-height: 1.35;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: flex-start !important;
+      white-space: nowrap !important;
+    }
+
+    .info-value,
+    .popup-value {
+      flex: 1 1 auto !important;
+      min-width: 0 !important;
+      min-height: auto !important;
+      padding: 10px 10px !important;
+      border: none !important;
+      border-radius: 0 !important;
+      background: #ffffff !important;
+      color: #314f63;
+      line-height: 1.48;
+      text-align: left !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: flex-start !important;
+      overflow-wrap: anywhere;
+      word-break: normal;
+      hyphens: none;
+    }
+
+    .info-value.note-value,
+    .popup-value.note-value {
+      align-items: flex-start !important;
+      text-align: left !important;
+    }
+
+    @media (max-width: 768px) {
+      .info-list,
+      .popup-info {
+        border-radius: 11px;
+      }
+
+      .info-row,
+      .popup-row {
+        min-height: 40px;
+      }
+
+      .info-label,
+      .popup-label {
+        flex-basis: 82px !important;
+        min-width: 82px;
+        padding: 9px 8px !important;
+        font-size: 13px;
+      }
+
+      .info-value,
+      .popup-value {
+        padding: 9px 8px !important;
+        font-size: 13px;
+        line-height: 1.45;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .info-row,
+      .popup-row {
+        display: flex !important;
+        align-items: stretch !important;
+        gap: 0 !important;
+      }
+
+      .info-label,
+      .popup-label {
+        flex-basis: 76px !important;
+        min-width: 76px;
+        padding: 8px 7px !important;
+        font-size: 12.5px;
+      }
+
+      .info-value,
+      .popup-value {
+        padding: 8px 7px !important;
+        font-size: 12.5px;
+      }
+    }
+
+
+    /* Căn đều riêng phần Ghi chú trong danh sách di tích, tránh chữ rơi lẻ một dòng */
+    .list .info-row.note-row {
+      display: block !important;
+      padding: 10px 12px !important;
+      background: #ffffff;
+      min-height: auto !important;
+    }
+
+    .list .info-row.note-row .info-label {
+      display: inline !important;
+      flex: none !important;
+      min-width: 0 !important;
+      padding: 0 !important;
+      border: none !important;
+      background: transparent !important;
+      white-space: nowrap !important;
+      font-weight: 900;
+      color: #173b55;
+      line-height: 1.62;
+    }
+
+    .list .info-row.note-row .info-label::after {
+      content: ": ";
+    }
+
+    .list .info-row.note-row .info-value.note-value {
+      display: inline !important;
+      padding: 0 !important;
+      border: none !important;
+      background: transparent !important;
+      color: #314f63;
+      line-height: 1.62;
+      text-align: justify !important;
+      text-align-last: left;
+      word-break: normal !important;
+      overflow-wrap: normal !important;
+      hyphens: none !important;
+      text-wrap: pretty;
+    }
+
+    @media (max-width: 768px) {
+      .list .info-row.note-row {
+        padding: 9px 10px !important;
+      }
+
+      .list .info-row.note-row .info-label,
+      .list .info-row.note-row .info-value.note-value {
+        font-size: 13px;
+        line-height: 1.6;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .list .info-row.note-row {
+        padding: 9px 9px !important;
+      }
+
+      .list .info-row.note-row .info-label,
+      .list .info-row.note-row .info-value.note-value {
+        font-size: 12.5px;
+        line-height: 1.58;
+      }
+    }
+
   </style>
 </head>
 
@@ -1043,7 +1232,7 @@
       },
 {
         name: "Đài tưởng niệm anh hùng liệt sĩ xã Tân Yên",
-        place: "Đài tưởng niệm anh hùng liệt sĩ xã Tân Yên",
+        place: "Trung tâm xã Tân Yên",
         village: "Trung tâm xã Tân Yên",
         type: "Đài tưởng niệm anh hùng liệt sĩ, địa điểm tiêu biểu",
         note: "Đài tưởng niệm anh hùng liệt sĩ xã Tân Yên tọa lạc tại khu vực núi Mấy, xã Tân Yên, có diện tích hơn 8.000 m², được khánh thành ngày 27/7/2019. Công trình là nơi thờ cúng, tưởng nhớ hơn 2.700 người con Tân Yên đã anh dũng hy sinh trong các cuộc kháng chiến và bảo vệ Tổ quốc. Đền được xây dựng theo kiến trúc truyền thống, gồm đền thờ, nhà treo chuông, cổng tam quan và các hạng mục phụ trợ. Đây là địa chỉ văn hóa - tâm linh quan trọng, thể hiện đạo lý “Uống nước nhớ nguồn” của Đảng bộ, chính quyền và nhân dân Tân Yên.",
@@ -1405,7 +1594,7 @@
           <div class="info-list">
             <div class="info-row"><div class="info-label">Địa điểm</div><div class="info-value">${location.place} - ${location.village}</div></div>
             <div class="info-row"><div class="info-label">Loại hình</div><div class="info-value">${location.type}</div></div>
-            <div class="info-row"><div class="info-label">Ghi chú</div><div class="info-value">${location.note}</div></div>
+            <div class="info-row note-row"><div class="info-label">Ghi chú</div><div class="info-value note-value">${location.note}</div></div>
           </div>
 
           <a class="btn" href="${directionLink(location.lat, location.lng)}" target="_blank" onclick="event.stopPropagation()">📍 Chỉ đường</a>
