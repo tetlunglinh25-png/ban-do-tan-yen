@@ -887,6 +887,54 @@
       .footer { font-size: 12.5px; }
       .credit-block { font-size: 12.5px; }
     }
+
+    /* Căn gọn nhãn và nội dung trong từng mục thông tin */
+    .info-row,
+    .popup-row {
+      display: flex;
+      grid-template-columns: none;
+      align-items: flex-start;
+      gap: 6px;
+    }
+
+    .info-label,
+    .popup-label {
+      flex: 0 0 auto;
+      white-space: nowrap;
+    }
+
+    .info-label::after,
+    .popup-label::after {
+      content: ":";
+    }
+
+    .info-value,
+    .popup-value {
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+
+    @media (max-width: 768px) {
+      .info-row,
+      .popup-row {
+        display: flex;
+        grid-template-columns: none;
+        gap: 5px;
+        padding: 6px 0;
+      }
+
+      .info-label,
+      .popup-label {
+        white-space: nowrap;
+      }
+
+      .info-value,
+      .popup-value {
+        text-align: left;
+        line-height: 1.45;
+      }
+    }
+
   </style>
 </head>
 
@@ -995,7 +1043,7 @@
       },
 {
         name: "Đài tưởng niệm anh hùng liệt sĩ xã Tân Yên",
-        place: "Trung tâm xã Tân Yên",
+        place: "Đài tưởng niệm anh hùng liệt sĩ xã Tân Yên",
         village: "Trung tâm xã Tân Yên",
         type: "Đài tưởng niệm anh hùng liệt sĩ, địa điểm tiêu biểu",
         note: "Đài tưởng niệm anh hùng liệt sĩ xã Tân Yên tọa lạc tại khu vực núi Mấy, xã Tân Yên, có diện tích hơn 8.000 m², được khánh thành ngày 27/7/2019. Công trình là nơi thờ cúng, tưởng nhớ hơn 2.700 người con Tân Yên đã anh dũng hy sinh trong các cuộc kháng chiến và bảo vệ Tổ quốc. Đền được xây dựng theo kiến trúc truyền thống, gồm đền thờ, nhà treo chuông, cổng tam quan và các hạng mục phụ trợ. Đây là địa chỉ văn hóa - tâm linh quan trọng, thể hiện đạo lý “Uống nước nhớ nguồn” của Đảng bộ, chính quyền và nhân dân Tân Yên.",
@@ -1277,8 +1325,7 @@
           ${specialNotice}
 
           <div class="popup-info">
-            <div class="popup-row"><div class="popup-label">Địa điểm</div><div class="popup-value">${location.place}</div></div>
-            <div class="popup-row"><div class="popup-label">Khu vực</div><div class="popup-value">${location.village}</div></div>
+            <div class="popup-row"><div class="popup-label">Địa điểm</div><div class="popup-value">${location.place} - ${location.village}</div></div>
             <div class="popup-row"><div class="popup-label">Phân loại</div><div class="popup-value">${category.label}</div></div>
             <div class="popup-row"><div class="popup-label">Loại hình</div><div class="popup-value">${location.type}</div></div>
             <div class="popup-row"><div class="popup-label">Ghi chú</div><div class="popup-value note-value">${location.note}</div></div>
@@ -1356,8 +1403,7 @@
           <h3 class="${category.isTourismHighlight ? "tourism-title" : ""}">${category.icon} ${location.name}</h3>
 
           <div class="info-list">
-            <div class="info-row"><div class="info-label">Địa điểm</div><div class="info-value">${location.place}</div></div>
-            <div class="info-row"><div class="info-label">Khu vực</div><div class="info-value">${location.village}</div></div>
+            <div class="info-row"><div class="info-label">Địa điểm</div><div class="info-value">${location.place} - ${location.village}</div></div>
             <div class="info-row"><div class="info-label">Loại hình</div><div class="info-value">${location.type}</div></div>
             <div class="info-row"><div class="info-label">Ghi chú</div><div class="info-value">${location.note}</div></div>
           </div>
