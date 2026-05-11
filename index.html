@@ -473,22 +473,42 @@
 
     .footer strong { color: #006bc7; }
 
-    .performer {
-      max-width: 760px;
+    .credit-block {
+      max-width: 820px;
       margin: 18px auto 0;
-      padding: 14px 18px;
+      padding: 14px 16px;
       border-radius: 16px;
       background: linear-gradient(135deg, #eaf7ff, #ffffff);
       border: 1px solid #cdeeff;
       box-shadow: 0 8px 22px rgba(0, 96, 180, 0.08);
       color: #173b55;
-      font-weight: 700;
-      overflow-wrap: anywhere;
+      text-align: left;
     }
 
-    .performer span {
+    .credit-row {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 10px;
+      padding: 8px 0;
+      border-bottom: 1px solid #e1f1ff;
+      align-items: start;
+    }
+
+    .credit-row:last-child {
+      border-bottom: none;
+    }
+
+    .credit-label {
       color: #006bc7;
       font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .credit-name {
+      color: #173b55;
+      font-weight: 800;
+      line-height: 1.55;
+      overflow-wrap: anywhere;
     }
 
     .custom-marker {
@@ -758,10 +778,20 @@
       .popup-box { max-width: 250px; font-size: 13px; }
       .popup-row { grid-template-columns: 70px 1fr; gap: 6px; }
       .popup-value.note-value { text-align: left; }
-      .performer {
+      .credit-block {
         font-size: 13px;
         padding: 12px;
         border-radius: 14px;
+      }
+
+      .credit-row {
+        grid-template-columns: 1fr;
+        gap: 3px;
+        padding: 9px 0;
+      }
+
+      .credit-label {
+        white-space: normal;
       }
     }
 
@@ -773,7 +803,7 @@
       .card-image-wrap { height: 170px; }
       .info-row { grid-template-columns: 76px 1fr; }
       .footer { font-size: 12.5px; }
-      .performer { font-size: 12.5px; }
+      .credit-block { font-size: 12.5px; }
     }
   </style>
 </head>
@@ -854,9 +884,16 @@
 
     <footer class="footer">
       <strong>Công trình thanh niên “Bản đồ di tích số xã Tân Yên”</strong><br>
-      Do Đoàn Thanh niên - Hội Liên hiệp Thanh niên Việt Nam - Hội Đồng Đội xã Tân Yên thực hiện.
-
-      <div class="performer">Người thực hiện: <span>Đồng chí Nguyễn Tuấn Hiệp - Phó Bí thư Đoàn xã Tân Yên</span></div>
+      <div class="credit-block">
+        <div class="credit-row">
+          <div class="credit-label">Chỉ đạo nội dung:</div>
+          <div class="credit-name">Đồng chí Nguyễn Thị Yến - Đảng ủy viên, Phó Chủ tịch UBMTTQ, Bí thư Đoàn thanh niên xã Tân Yên</div>
+        </div>
+        <div class="credit-row">
+          <div class="credit-label">Người thực hiện:</div>
+          <div class="credit-name">Đồng chí Nguyễn Tuấn Hiệp - Phó Bí thư Đoàn thanh niên xã, Bí thư Chi đoàn Công an xã Tân Yên</div>
+        </div>
+      </div>
     </footer>
   </main>
 
@@ -864,7 +901,7 @@
 
   <script>
     const locations = [
-      {
+{
         name: "Quảng trường Lương Văn Nắm",
         place: "Quảng trường Lương Văn Nắm",
         village: "Trung tâm xã Tân Yên",
@@ -874,7 +911,17 @@
         lat: 21.386421332205895,
         lng: 106.12936931845796
       },
-      {
+{
+        name: "Đài tưởng niệm anh hùng liệt sĩ xã Tân Yên",
+        place: "Trung tâm xã Tân Yên",
+        village: "Trung tâm xã Tân Yên",
+        type: "Đài tưởng niệm anh hùng liệt sĩ, địa điểm tiêu biểu",
+        note: "Đài tưởng niệm anh hùng liệt sĩ xã Tân Yên tọa lạc tại khu vực núi Mấy, xã Tân Yên, có diện tích hơn 8.000 m², được khánh thành ngày 27/7/2019. Công trình là nơi thờ cúng, tưởng nhớ hơn 2.700 người con Tân Yên đã anh dũng hy sinh trong các cuộc kháng chiến và bảo vệ Tổ quốc. Đền được xây dựng theo kiến trúc truyền thống, gồm đền thờ, nhà treo chuông, cổng tam quan và các hạng mục phụ trợ. Đây là địa chỉ văn hóa - tâm linh quan trọng, thể hiện đạo lý “Uống nước nhớ nguồn” của Đảng bộ, chính quyền và nhân dân Tân Yên.",
+        image: "images/dai-tuong-niem.png",
+        lat: 21.387398245031175,
+        lng: 106.1281659443199
+      },
+{
         name: "Chùa Phúc Sơn",
         place: "Chùa Phúc Sơn, Đình Ngô Xá",
         village: "Thôn Ngoài, xã Tân Yên",
@@ -884,7 +931,7 @@
         lat: 21.383990768365607,
         lng: 106.11133442207652
       },
-      {
+{
         name: "Đình Cao Thượng",
         place: "Đình Cao Thượng",
         village: "Thôn Đình, xã Tân Yên",
@@ -894,7 +941,7 @@
         lat: 21.379743995148612,
         lng: 106.135674338706
       },
-      {
+{
         name: "Đình Nội",
         place: "Đình Nội",
         village: "Thôn Nội Hạc, xã Tân Yên",
@@ -904,7 +951,7 @@
         lat: 21.369916690313506,
         lng: 106.1397083675413
       },
-      {
+{
         name: "Chùa Kim Tràng",
         place: "Chùa Kim Tràng",
         village: "Thôn Kim Tràng, xã Tân Yên",
@@ -914,7 +961,7 @@
         lat: 21.34276189011102,
         lng: 106.13967776754076
       },
-      {
+{
         name: "Lăng quận công Giáp Đăng Luân",
         place: "Lăng quận công Giáp Đăng Luân",
         village: "Thôn Ngọc Trai, xã Tân Yên",
@@ -924,7 +971,7 @@
         lat: 21.33655044334248,
         lng: 106.1434460573037
       },
-      {
+{
         name: "Khu di tích Chùa Kim Sơn, Đình Giã",
         place: "Chùa Kim Sơn, Đình Giã",
         village: "Thôn Đình Giã, xã Tân Yên",
@@ -934,7 +981,7 @@
         lat: 21.380646734269295,
         lng: 106.13901429719874
       },
-      {
+{
         name: "Chùa Phán Thú",
         place: "Chùa Phán Thú",
         village: "Thôn Um Ngò, xã Tân Yên",
@@ -944,7 +991,7 @@
         lat: 21.34966086654221,
         lng: 106.154375904431
       },
-      {
+{
         name: "Chùa Non Tiên",
         place: "Chùa Non Tiên",
         village: "Thôn Ngoài Hạ, xã Tân Yên",
@@ -954,7 +1001,7 @@
         lat: 21.378840660552264,
         lng: 106.15400281013332
       },
-      {
+{
         name: "Chùa Cổ Am",
         place: "Chùa Cổ Am",
         village: "Thôn Tân Lập Cao Thượng, xã Tân Yên",
@@ -964,7 +1011,7 @@
         lat: 21.401836764077338,
         lng: 106.13727881349378
       },
-      {
+{
         name: "Đền Quận Công Dương Hùng Lượng",
         place: "Đền Quận Công Dương Hùng Lượng",
         village: "Thôn Dinh Thẳm, xã Tân Yên",
@@ -974,7 +1021,7 @@
         lat: 21.396609599851004,
         lng: 106.10027372283005
       },
-      {
+{
         name: "Đình Bùi",
         place: "Đình Bùi",
         village: "Thôn Bậu, xã Tân Yên",
@@ -984,7 +1031,7 @@
         lat: 21.396022640875398,
         lng: 106.1475436899604
       },
-      {
+{
         name: "Đình Tranh",
         place: "Đình Tranh",
         village: "Thôn Tân Tiến, xã Tân Yên",
@@ -994,7 +1041,7 @@
         lat: 21.380805775901745,
         lng: 106.13910745767082
       },
-      {
+{
         name: "Đền Quan",
         place: "Đền Quan",
         village: "Thôn Bùi, xã Tân Yên",
@@ -1004,7 +1051,7 @@
         lat: 21.389294802716954,
         lng: 106.13923281349378
       },
-      {
+{
         name: "Đình Hoãn",
         place: "Đình Hoãn",
         village: "Thôn Trong Giữa, xã Tân Yên",
@@ -1014,7 +1061,7 @@
         lat: 21.374556348087253,
         lng: 106.14420298227012
       },
-      {
+{
         name: "Lăng Quan Thái Bảo",
         place: "Lăng Quan Thái Bảo",
         village: "Thôn Um Ngò, xã Tân Yên",
@@ -1024,7 +1071,7 @@
         lat: 21.349595785149194,
         lng: 106.15045993807465
       },
-      {
+{
         name: "Đình Ngò",
         place: "Đình Ngò",
         village: "Thôn Um Ngò, xã Tân Yên",
@@ -1034,7 +1081,7 @@
         lat: 21.354779598846488,
         lng: 106.15204642459874
       },
-      {
+{
         name: "Đình Nguyễn",
         place: "Đình Nguyễn",
         village: "Thôn Nguyễn, xã Tân Yên",
@@ -1044,7 +1091,7 @@
         lat: 21.343053199860034,
         lng: 106.16294974784078
       },
-      {
+{
         name: "Đình Kim Tràng",
         place: "Đình Kim Tràng",
         village: "Thôn Kim Tràng, xã Tân Yên",
@@ -1053,16 +1100,6 @@
         image: "images/dinhkimtrang.png",
         lat: 21.341956031653385,
         lng: 106.14011738063988
-      },
-      {
-        name: "Đài tưởng niệm anh hùng liệt sĩ xã Tân Yên",
-        place: "Trung tâm xã Tân Yên",
-        village: "Trung tâm xã Tân Yên",
-        type: "Đài tưởng niệm anh hùng liệt sĩ, địa điểm tiêu biểu",
-        note: "Đài tưởng niệm anh hùng liệt sĩ xã Tân Yên tọa lạc tại khu vực núi Mấy, xã Tân Yên, có diện tích hơn 8.000 m², được khánh thành ngày 27/7/2019. Công trình là nơi thờ cúng, tưởng nhớ hơn 2.700 người con Tân Yên đã anh dũng hy sinh trong các cuộc kháng chiến và bảo vệ Tổ quốc. Đền được xây dựng theo kiến trúc truyền thống, gồm đền thờ, nhà treo chuông, cổng tam quan và các hạng mục phụ trợ. Đây là địa chỉ văn hóa - tâm linh quan trọng, thể hiện đạo lý “Uống nước nhớ nguồn” của Đảng bộ, chính quyền và nhân dân Tân Yên.",
-        image: "images/dai-tuong-niem.png",
-        lat: 21.387398245031175,
-        lng: 106.1281659443199
       }
     ];
 
