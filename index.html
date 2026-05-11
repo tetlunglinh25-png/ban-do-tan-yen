@@ -573,6 +573,20 @@
       animation: pulseMemorial 1.8s infinite;
     }
 
+    .marker-icon.featured-marker {
+      width: 56px;
+      height: 56px;
+      font-size: 27px;
+      border: 4px solid #fff4b8;
+      box-shadow: 0 10px 24px rgba(193, 18, 31, 0.45);
+      animation: pulseMemorial 1.8s infinite;
+    }
+
+    .featured-marker-label {
+      border-color: #fff4b8;
+      box-shadow: 0 5px 16px rgba(193, 18, 31, 0.32);
+    }
+
     @keyframes pulseMemorial {
       0% { transform: scale(1); }
       50% { transform: scale(1.08); }
@@ -1156,6 +1170,29 @@
       return `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
     }
 
+    const featuredMarkerNames = [
+      "Chùa Phúc Sơn",
+      "Quảng trường Lương Văn Nắm",
+      "Chùa Kim Tràng",
+      "Đình Cao Thượng",
+      "Đình Nội",
+      "Lăng quận công Giáp Đăng Luân"
+    ];
+
+    function normalizeText(text) {
+      return text
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/đ/g, "d")
+        .trim();
+    }
+
+    function isFeaturedMarker(name) {
+      const normalizedName = normalizeText(name);
+      return featuredMarkerNames.some(item => normalizedName === normalizeText(item));
+    }
+
     function createPopup(location) {
       const category = getCategoryInfo(location.type);
       const specialNotice = category.isTourismHighlight
@@ -1186,23 +1223,27 @@
 
     locations.forEach((location) => {
       const category = getCategoryInfo(location.type);
+      const featured = isFeaturedMarker(location.name);
+      const markerIconClass = `${category.className}${featured ? " featured-marker" : ""}`;
+      const markerLabelClass = `marker-label${featured ? " featured-marker-label" : ""}`;
+      const elevated = category.className === "memorial-highlight" || featured;
 
       const customIcon = L.divIcon({
         className: "custom-marker",
         html: `
           <div class="marker-wrapper">
-            <div class="marker-icon ${category.className}">${category.icon}</div>
-            <div class="marker-label">${location.name}</div>
+            <div class="marker-icon ${markerIconClass}">${category.icon}</div>
+            <div class="${markerLabelClass}">${location.name}</div>
           </div>
         `,
-        iconSize: [160, 78],
-        iconAnchor: [80, 39],
+        iconSize: elevated ? [180, 92] : [160, 78],
+        iconAnchor: elevated ? [90, 46] : [80, 39],
         popupAnchor: [0, -32]
       });
 
       const marker = L.marker([location.lat, location.lng], {
           icon: customIcon,
-          zIndexOffset: category.className === "memorial-highlight" ? 2000 : 0
+          zIndexOffset: elevated ? 2500 : 0
         })
         .addTo(map)
         .bindPopup(createPopup(location));
