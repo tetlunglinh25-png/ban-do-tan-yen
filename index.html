@@ -6,8 +6,24 @@
 
   <title>Bản đồ di tích số xã Tân Yên</title>
   <meta name="description" content="Bản đồ di tích số xã Tân Yên hỗ trợ người dân và du khách tra cứu nhanh các địa danh, danh lam thắng cảnh, di tích, địa điểm tiêu biểu trên địa bàn xã." />
+
+  <!-- Icon hiển thị trên tab trình duyệt -->
+  <link rel="icon" type="image/png" href="images/logo-doan-thanh-nien.png" />
+  <link rel="shortcut icon" type="image/png" href="images/logo-doan-thanh-nien.png" />
+  <link rel="apple-touch-icon" href="images/logo-doan-thanh-nien.png" />
+  <meta name="theme-color" content="#0a83e8" />
+
+  <!-- Ảnh preview khi chia sẻ link website -->
+  <meta property="og:type" content="website" />
   <meta property="og:title" content="Bản đồ di tích số xã Tân Yên" />
   <meta property="og:description" content="Công trình thanh niên của Đoàn Thanh niên - Hội LHTN - Hội Đồng Đội xã Tân Yên." />
+  <meta property="og:image" content="images/quang-truong-luong-van-nam.jpg" />
+  <meta property="og:image:alt" content="Hình giới thiệu Bản đồ di tích số xã Tân Yên" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Bản đồ di tích số xã Tân Yên" />
+  <meta name="twitter:description" content="Công trình thanh niên của Đoàn Thanh niên - Hội LHTN - Hội Đồng Đội xã Tân Yên." />
+  <meta name="twitter:image" content="images/quang-truong-luong-van-nam.jpg" />
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -365,6 +381,9 @@
       cursor: pointer;
       transition: 0.22s ease;
       border: 1px solid #d9efff;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
     }
 
     .card:hover {
@@ -419,32 +438,53 @@
 
     .info-list {
       margin-top: 8px;
-      border-top: 1px solid #e1f1ff;
+      display: grid;
+      gap: 8px;
     }
 
     .info-row {
       display: grid;
-      grid-template-columns: 96px 1fr;
-      gap: 10px;
-      padding: 8px 0;
-      border-bottom: 1px solid #eef7ff;
-      align-items: start;
+      grid-template-columns: 104px minmax(0, 1fr);
+      gap: 8px;
+      padding: 0;
+      align-items: stretch;
+    }
+
+    .info-label,
+    .info-value {
+      min-height: 38px;
+      padding: 9px 10px;
+      border: 1px solid #dcefff;
+      background: #f7fcff;
+      border-radius: 10px;
+      display: flex;
+      align-items: flex-start;
+      word-break: normal;
+      overflow-wrap: break-word;
     }
 
     .info-label {
       font-weight: 900;
       color: #173b55;
-      white-space: nowrap;
+      white-space: normal;
+      justify-content: flex-start;
+      background: linear-gradient(135deg, #eef8ff, #ffffff);
     }
 
     .info-value {
       color: #314f63;
-      line-height: 1.58;
-      text-align: justify;
+      line-height: 1.56;
+      text-align: left;
+      hyphens: auto;
+    }
+
+    .info-row .info-value {
+      min-width: 0;
     }
 
     .btn {
       display: inline-block;
+      align-self: flex-start;
       margin-top: 12px;
       padding: 11px 15px;
       background: linear-gradient(135deg, #007ee5, #00a6ff);
@@ -649,28 +689,42 @@
 
     .popup-info {
       margin-top: 8px;
-      border-top: 1px solid #e1f1ff;
+      display: grid;
+      gap: 6px;
     }
 
     .popup-row {
       display: grid;
-      grid-template-columns: 82px 1fr;
-      gap: 8px;
-      padding: 7px 0;
-      border-bottom: 1px solid #eef7ff;
-      align-items: start;
+      grid-template-columns: 78px minmax(0, 1fr);
+      gap: 6px;
+      padding: 0;
+      align-items: stretch;
+    }
+
+    .popup-label,
+    .popup-value {
+      min-height: 34px;
+      padding: 7px 8px;
+      border: 1px solid #dcefff;
+      background: #f7fcff;
+      border-radius: 9px;
+      display: flex;
+      align-items: flex-start;
+      overflow-wrap: break-word;
     }
 
     .popup-label {
       font-weight: 900;
       color: #173b55;
-      white-space: nowrap;
+      white-space: normal;
+      background: linear-gradient(135deg, #eef8ff, #ffffff);
     }
 
     .popup-value {
       color: #314f63;
       line-height: 1.55;
       text-align: left;
+      min-width: 0;
     }
 
     .popup-value.note-value { text-align: justify; }
@@ -762,9 +816,15 @@
       .card-image-wrap { height: 185px; }
       .card h3 { font-size: 18px; }
       .info-row {
-        grid-template-columns: 84px 1fr;
-        gap: 7px;
-        font-size: 14px;
+        grid-template-columns: 88px minmax(0, 1fr);
+        gap: 6px;
+        font-size: 13.5px;
+      }
+      .info-label,
+      .info-value {
+        min-height: 36px;
+        padding: 8px 8px;
+        border-radius: 9px;
       }
       .info-value { text-align: left; }
       .marker-icon {
@@ -790,7 +850,13 @@
       }
       .popup-image { width: 235px; height: 132px; }
       .popup-box { max-width: 250px; font-size: 13px; }
-      .popup-row { grid-template-columns: 70px 1fr; gap: 6px; }
+      .popup-row { grid-template-columns: 72px minmax(0, 1fr); gap: 5px; }
+      .popup-label,
+      .popup-value {
+        min-height: 32px;
+        padding: 7px 7px;
+        border-radius: 8px;
+      }
       .popup-value.note-value { text-align: left; }
       .credit-block {
         font-size: 13px;
@@ -815,7 +881,9 @@
       .badge { font-size: 13px; }
       #map { height: 490px; }
       .card-image-wrap { height: 170px; }
-      .info-row { grid-template-columns: 76px 1fr; }
+      .info-row { grid-template-columns: 1fr; gap: 5px; }
+      .info-label { min-height: 30px; align-items: center; }
+      .info-value { min-height: 34px; }
       .footer { font-size: 12.5px; }
       .credit-block { font-size: 12.5px; }
     }
