@@ -1443,9 +1443,10 @@
       zoomControl: true
     }).setView([21.371, 106.136], 12);
 
-    L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
-      attribution: "&copy; OpenStreetMap contributors &copy; CARTO",
-      subdomains: "abcd",
+    // Bản đồ đường phố Esri; giữ nguyên hệ tọa độ và các điểm di tích.
+    L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}", {
+      attribution: 'Tiles &copy; Esri &mdash; Sources: Esri, HERE, Garmin, USGS, Intermap, INCREMENT P, NRCan, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, OpenStreetMap contributors, and the GIS User Community',
+      maxNativeZoom: 19,
       maxZoom: 20
     }).addTo(map);
 
